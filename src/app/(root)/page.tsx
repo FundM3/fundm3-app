@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { ConnectBtn } from "./components/connectButton";
-import Profile from "./components/profile";
+import { ConnectBtn } from "../components/connectButton";
+import Profile from "../components/profile";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
