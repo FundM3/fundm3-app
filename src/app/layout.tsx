@@ -1,7 +1,7 @@
 import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 
@@ -10,9 +10,16 @@ import Providers from "./providers";
 export const metadata: Metadata = {
   title: "FundM3 App",
   description: "A donation platform that leverages Farcaster frames for Projects & Creators",
+  icons: {
+    icon: '/assets/images/FundM3-Logo-02.jpg'
+  }
 };
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ 
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: '--font-poppins',
+});
 
 export default function RootLayout({
   children,
@@ -23,7 +30,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
