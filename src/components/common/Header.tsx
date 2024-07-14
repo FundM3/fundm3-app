@@ -5,11 +5,11 @@ import { ConnectBtn } from './connectButton'
 
 const Header = () => {
   return (
-    <header className='w-full border-b'>
+    <header className='w-full border-b bg-black'>
         <div className='wrapper flex items-center justify-between'>
             <Link href="/">
                 <Image 
-                    src="/assets/images/FundM3-Logo-01.jpg"
+                    src="/assets/logos/logo.svg"
                     alt='FundM3 Logo'
                     width={128}
                     height={38}

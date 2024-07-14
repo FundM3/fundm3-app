@@ -53,7 +53,7 @@ export const ConnectBtn = () => {
   }
 
   return (
-    <div className="max-w-5xl w-full flex items-center justify-between">
+    <div className="max-w-5xl w-full flex items-center justify-between text-white">
       <button className="btn" onClick={openChainModal}>
         Switch Networks
       </button>
