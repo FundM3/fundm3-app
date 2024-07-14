@@ -15,6 +15,7 @@ const Header = () => {
                     height={38}
                 />
             </Link>
+            
             <ConnectBtn />
         </div>
     </header>
