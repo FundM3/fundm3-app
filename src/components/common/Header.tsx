@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
+import { ConnectBtn } from './connectButton'
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
                     height={38}
                 />
             </Link>
-
+            <ConnectBtn />
         </div>
     </header>
   )

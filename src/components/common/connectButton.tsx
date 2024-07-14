@@ -54,6 +54,9 @@ export const ConnectBtn = () => {
 
   return (
     <div className="max-w-5xl w-full flex items-center justify-between">
+      <button className="btn" onClick={openChainModal}>
+        Switch Networks
+      </button>
       <div
         className="flex justify-center items-center px-4 py-2 border border-neutral-700 bg-neutral-800/30 rounded-xl font-mono font-bold gap-x-2 cursor-pointer"
         onClick={async () => openAccountModal?.()}
@@ -71,9 +74,6 @@ export const ConnectBtn = () => {
         </div>
         <p>Account</p>
       </div>
-      <button className="btn" onClick={openChainModal}>
-        Switch Networks
-      </button>
     </div>
   );
 };
