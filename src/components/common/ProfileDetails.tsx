@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input"
 import { profileDetailSchema } from '@/lib/validator'
 import * as z from "zod"
 import { formatUnits } from 'viem'
+import { middleEllipsis } from "@/lib/utils";
 
 type ProfileDetailsProps = {
    userId: string
@@ -94,25 +95,25 @@ const ProfileDetails = () => {
                             <FormItem>
                                 <FormLabel>Address</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Wallet Address" {...field} value={address || 'No Address Available'} className="input-field" disabled />
+                                    <Input placeholder="Wallet Address" {...field} value={middleEllipsis(address as string, 12) || 'No Address Available'} className="input-field" disabled />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <FormField
+                    {/* <FormField
                         control={form.control}
                         name="balance"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Balance</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Balance" {...field} value={Number(formatUnits(data.value, data.decimals)).toFixed(4)} className="input-field" disabled />
+                                    <Input placeholder="Balance" {...field} value={Number(formatUnits(data.value, data.decimals)).toFixed(4) || 'No Balance'} className="input-field" disabled />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
-                    />
+                    /> */}
                     <FormField
                         control={form.control}
                         name="ens"
