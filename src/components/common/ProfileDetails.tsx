@@ -168,7 +168,7 @@ const ProfileDetails = () => {
                     />
                 </div>
                 
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Update</Button>
             </form>
         </Form>
     )
