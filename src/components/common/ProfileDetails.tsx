@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useAccount, useBalance, useEnsName } from 'wagmi'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-// import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
   Form,
