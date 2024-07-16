@@ -8,6 +8,7 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { useAccount, useDisconnect } from "wagmi";
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const ConnectBtn = () => {
   const { isConnecting, address, isConnected, chain } = useAccount();
@@ -53,7 +54,7 @@ export const ConnectBtn = () => {
   }
 
   return (
-    <div className="max-w-52 w-full flex items-center justify-between text-white">
+    <div className="max-w-64 w-full flex items-center justify-between text-white">
       <button className="btn" onClick={openChainModal}>
         Switch
       </button>
@@ -73,6 +74,12 @@ export const ConnectBtn = () => {
           {emoji}
         </div>
         <p>Account</p>
+      </div>
+      <div>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </div>
     </div>
   );

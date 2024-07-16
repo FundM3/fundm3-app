@@ -2,6 +2,7 @@
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export const CustomConnectButton = () => {
   return (
@@ -49,8 +50,8 @@ export const CustomConnectButton = () => {
                 );
               }
               return (
-                <div className="max-w-52 w-full flex items-center justify-between text-white">
-                  <button className="btn" onClick={openChainModal} type="button">
+                <div className="max-w-64 w-full flex items-center justify-between text-white">
+                  <button className="btn mx-2" onClick={openChainModal} type="button">
                     Switch
                   </button>
                   <div 
@@ -69,6 +70,12 @@ export const CustomConnectButton = () => {
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
                     <p>Account</p>
+                  </div>
+                  <div className='mx-2'>
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
                   </div>
                 </div>
               );
