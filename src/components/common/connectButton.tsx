@@ -29,7 +29,7 @@ export const ConnectBtn = () => {
   if (!isConnected) {
     return (
       <button
-        className="btn"
+        className="btn text-white"
         onClick={async () => {
           // Disconnecting wallet first because sometimes when is connected but the user is not connected
           if (isConnected) {
@@ -39,7 +39,7 @@ export const ConnectBtn = () => {
         }}
         disabled={isConnecting}
       >
-        { isConnecting ? 'Connecting...' : 'Connect your wallet' }
+        { isConnecting ? 'Connecting...' : 'Connect Wallet' }
       </button>
     );
   }
@@ -53,7 +53,7 @@ export const ConnectBtn = () => {
   }
 
   return (
-    <div className="max-w-5xl w-full flex items-center justify-between text-white">
+    <div className="max-w-52 w-full flex items-center justify-between text-white">
       <button className="btn" onClick={openChainModal}>
         Switch
       </button>
