@@ -6,7 +6,10 @@ export const env = createEnv({
    * Serverside Environment variables, not available on the client.
    * Will throw if you access these variables on the client.
    */
-  server: {},
+  server: {
+    IRON_SESSION_PASSWORD: z.string().min(32),
+    JWT_SECRET_KEY: z.string().min(32)
+  },
   /*
    * Environment variables available on the client (and server).
    *
@@ -24,6 +27,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NEXT_PUBLIC_APP_BASE_URL: process.env.NEXT_PUBLIC_APP_BASE_URL,
-    NEXT_PUBLIC_WALLET_CONNECT_ID: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID
+    NEXT_PUBLIC_WALLET_CONNECT_ID: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID,
+    IRON_SESSION_PASSWORD: process.env.IRON_SESSION_PASSWORD,
+    JWT_SECRET_KEY: process.env.JWT_SECRET_KEY
   }
 });

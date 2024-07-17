@@ -1,6 +1,7 @@
 import { IRON_OPTIONS } from '@/lib/config/session';
+import { env } from '@/lib/config/env';
+import { generateJWT } from '@/lib/utils/jwt';
 import { getIronSession } from 'iron-session';
-import { NextApiResponse } from 'next';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { SiweMessage } from 'siwe';
@@ -20,5 +21,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'Invalid nonce.' }, { status: 422 });
   }
 
-  return NextResponse.json({ jwt: 'json_web_token' });
+  const jwtToken = generateJWT({ sub: fields.address }, env.JWT_SECRET_KEY);
+
+  return NextResponse.json({ jwt: jwtToken });
 }

@@ -15,7 +15,7 @@ export const authenticationAdapter = createAuthenticationAdapter({
     return new SiweMessage({
       domain: window.location.host,
       address,
-      statement: 'Sign in with Ethereum to the app.',
+      statement: 'Sign in with Ethereum to the FundM3.',
       uri: window.location.origin,
       version: '1',
       chainId,
@@ -37,7 +37,7 @@ export const authenticationAdapter = createAuthenticationAdapter({
     }
     const data = await response.json();
 
-    await signInAction({ jwt: data.jwt });
+    await signInAction(data.jwt);
 
     eventEmitter.emit(EMITTER_EVENTS.SIGN_IN);
 
