@@ -1,10 +1,9 @@
 import "./globals.css";
 import "@rainbow-me/rainbowkit/styles.css";
-
 import { Poppins } from "next/font/google";
 import type { Metadata } from "next";
+import { headers } from 'next/headers';
 import { env } from '@/lib/config/env';
-
 import Providers from '@/components/providers/Providers';
 
 
@@ -30,10 +29,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookie = headers().get('cookie');
+
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Providers>{children}</Providers>
+        <Providers cookie={cookie}>{children}</Providers>
       </body>
     </html>
   );
