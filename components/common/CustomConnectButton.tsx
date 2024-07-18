@@ -2,7 +2,17 @@
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuShortcut,
+} from "@/components/ui/dropdown-menu";
+import Link from 'next/link';
 
 export const CustomConnectButton = () => {
   return (
@@ -73,11 +83,37 @@ export const CustomConnectButton = () => {
                     </div>
                     <p>Account</p>
                   </div>
-                  <div className='mx-2'>
+                  {/* <div className='mx-2'>
                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
+                  </div> */}
+                  <div className='mx-2'>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <Avatar>
+                          <AvatarImage src="https://github.com/shadcn.png" />
+                          <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <Link href="/profile" >
+                          <DropdownMenuItem>Profile</DropdownMenuItem>
+                        </Link>
+                        <Link href="/create">
+                          <DropdownMenuItem>Create Project</DropdownMenuItem>
+                        </Link>
+                        <Link href="/projects">
+                          <DropdownMenuItem>Projects</DropdownMenuItem>
+                        </Link>
+                        <Link href="/creators">
+                          <DropdownMenuItem>Creators</DropdownMenuItem>
+                        </Link>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
               );

@@ -49,16 +49,6 @@ export default function Home() {
           <Search />
           <Filter />
         </div>
-
-        {/* <Collection 
-          data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={6}
-          page={page}
-          totalPages={events?.totalPages}
-        /> */}
       </section>
     </>
   );
