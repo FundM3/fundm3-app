@@ -1,13 +1,12 @@
 'use client';
 
 import '@rainbow-me/rainbowkit/styles.css';
-import { State, WagmiProvider, cookieToInitialState } from 'wagmi';
+import { useAccount } from 'wagmi';
 import {
   RainbowKitProvider as NextRainbowKitProvider,
   RainbowKitAuthenticationProvider, darkTheme
 } from '@rainbow-me/rainbowkit';
-import { ReactNode, useState } from 'react';
-import ReactQueryProvider from './ReactQueryProvider';
+import { ReactNode, useState, useEffect } from 'react';
 import { config } from '@/lib/config/wagmi';
 import { authenticationAdapter } from '@/lib/utils/authenticationAdapter';
 import useAsyncEffect from '@/lib/hooks/useAsyncEffect';
@@ -18,19 +17,17 @@ import { EMITTER_EVENTS } from '@/lib/constants';
 
 type RainbowKitProviderProps = {
   children: ReactNode;
-  cookie?: string | null;
 };
 
 export default function RainbowKitProvider({
   children,
-  cookie
 }: RainbowKitProviderProps) {
-  const initialState = cookieToInitialState(config, cookie);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuth, setIsAuth] = useState<Optional<boolean>>();
+  const { address } = useAccount();
 
   useAsyncEffect(async () => {
-    const { isAuth } = await isAuthAction();
+    const { isAuth } = await isAuthAction(address);
 
     setIsAuth(isAuth);
     setIsLoading(false);
@@ -42,7 +39,7 @@ export default function RainbowKitProvider({
     return () => {
       eventEmitter.removeListener(EMITTER_EVENTS.SIGN_IN);
     };
-  }, []);
+  }, [address]);
 
   const status = isLoading
     ? 'loading'
@@ -51,26 +48,22 @@ export default function RainbowKitProvider({
     : 'unauthenticated';
 
   return (
-    <WagmiProvider config={config} initialState={initialState}>
-      <ReactQueryProvider>
-        <RainbowKitAuthenticationProvider
-          adapter={authenticationAdapter}
-          status={status}
-        >
-          <NextRainbowKitProvider 
-            theme={darkTheme({
-              accentColor: "#0E76FD",
-              accentColorForeground: "white",
-              borderRadius: "large",
-              fontStack: "system",
-              overlayBlur: "small",
-            })} 
-            coolMode
-          >
-            {children}
-          </NextRainbowKitProvider>
-        </RainbowKitAuthenticationProvider>
-      </ReactQueryProvider>
-    </WagmiProvider>
+    <RainbowKitAuthenticationProvider
+      adapter={authenticationAdapter}
+      status={status}
+    >
+      <NextRainbowKitProvider 
+        theme={darkTheme({
+          accentColor: "#0E76FD",
+          accentColorForeground: "white",
+          borderRadius: "large",
+          fontStack: "system",
+          overlayBlur: "small",
+        })} 
+        coolMode
+      >
+        {children}
+      </NextRainbowKitProvider>
+    </RainbowKitAuthenticationProvider>
   );
 }
