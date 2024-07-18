@@ -81,21 +81,17 @@ export const CustomConnectButton = () => {
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
-                    <p>Account</p>
+                    <p>Wallet</p>
                   </div>
-                  {/* <div className='mx-2'>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                  </div> */}
-                  <div className='mx-2'>
+                  <div className='ml-2'>
                     <DropdownMenu>
                       <DropdownMenuTrigger>
-                        <Avatar>
-                          <AvatarImage src="https://github.com/shadcn.png" />
-                          <AvatarFallback>CN</AvatarFallback>
-                        </Avatar>
+                        <div className='pt-0.5'>
+                          <Avatar>
+                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                        </div>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -3,7 +3,6 @@ import Image from 'next/image'
 import React from 'react'
 import { CustomConnectButton } from './CustomConnectButton'
 
-
 const Header = () => {
   return (
     <header className='w-full border-b bg-black'>
