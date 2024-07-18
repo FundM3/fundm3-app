@@ -27,7 +27,7 @@ export default function RainbowKitProvider({
   const { address } = useAccount();
 
   useAsyncEffect(async () => {
-    const { isAuth } = await isAuthAction(address);
+    const { isAuth } = await isAuthAction(address || "Invalid");
 
     setIsAuth(isAuth);
     setIsLoading(false);
