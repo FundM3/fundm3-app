@@ -81,14 +81,14 @@ export const CustomConnectButton = () => {
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
-                    <p>Wallet</p>
+                    <p>Wallet</p>SW SSS333
                   </div>
                   <div className='ml-2'>
                     <DropdownMenu>
                       <DropdownMenuTrigger>
                         <div className='pt-0.5'>
                           <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                            <AvatarImage src="/assets/icons/profile.svg" alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                           </Avatar>
                         </div>
@@ -97,16 +97,10 @@ export const CustomConnectButton = () => {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <Link href="/profile" >
-                          <DropdownMenuItem>Profile</DropdownMenuItem>
+                          <DropdownMenuItem>My Profile</DropdownMenuItem>
                         </Link>
-                        <Link href="/create">
-                          <DropdownMenuItem>Create Project</DropdownMenuItem>
-                        </Link>
-                        <Link href="/projects">
-                          <DropdownMenuItem>Projects</DropdownMenuItem>
-                        </Link>
-                        <Link href="/creators">
-                          <DropdownMenuItem>Creators</DropdownMenuItem>
+                        <Link href="/">
+                          <DropdownMenuItem>My Sponsors</DropdownMenuItem>
                         </Link>
                       </DropdownMenuContent>
                     </DropdownMenu>
