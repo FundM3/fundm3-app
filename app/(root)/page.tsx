@@ -28,7 +28,7 @@ export default function Home() {
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="/projects">
                 Explore Projects
-              </Link>W3WCSX
+              </Link>
             </Button>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="/creators">

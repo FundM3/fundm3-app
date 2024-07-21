@@ -81,7 +81,7 @@ export const CustomConnectButton = () => {
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
-                    <p>Wallet</p>SW SSS333
+                    <p>Wallet</p>
                   </div>
                   <div className='ml-2'>
                     <DropdownMenu>
