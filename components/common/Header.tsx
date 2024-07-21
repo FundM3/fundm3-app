@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
-import { ConnectBtn } from './connectButton'
 import { CustomConnectButton } from './CustomConnectButton'
-
 
 const Header = () => {
   return (
@@ -18,7 +16,6 @@ const Header = () => {
                 />
             </Link>
             
-            {/* <ConnectBtn /> */}
             <CustomConnectButton />
         </div>
     </header>

@@ -38,8 +38,9 @@ const ProfileDetails = () => {
 
     // Wallet Address Related
     const { address, chain } = useAccount();
-    const { data } = useBalance({ address });
     const ens = useEnsName({ address });
+
+    console.log('ens', ens)
 
     // Form Schema for shadcn-ui form
     const formSchema = z.object({
@@ -100,19 +101,6 @@ const ProfileDetails = () => {
                             </FormItem>
                         )}
                     />
-                    {/* <FormField
-                        control={form.control}
-                        name="balance"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Balance</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Balance" {...field} value={Number(formatUnits(data.value, data.decimals)).toFixed(4) || 'No Balance'} className="input-field" disabled />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    /> */}
                     <FormField
                         control={form.control}
                         name="ens"
@@ -120,7 +108,7 @@ const ProfileDetails = () => {
                             <FormItem>
                                 <FormLabel>ENS</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Wallet Address" {...field} value={ens.data} className="input-field" disabled />
+                                    <Input placeholder="Wallet Address" {...field} value={ens.data || "No ENS"} className="input-field" disabled />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

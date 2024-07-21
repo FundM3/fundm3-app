@@ -27,7 +27,12 @@ export default function Home() {
             <p className="p-regular-20 md:p-regular-24">Join a community of change makers on FundM3. Together, we can build a brighter future for all</p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="/projects">
-                Explore Now
+                Explore Projects
+              </Link>
+            </Button>
+            <Button size="lg" asChild className="button w-full sm:w-fit">
+              <Link href="/creators">
+                Explore Creators
               </Link>
             </Button>
           </div>
@@ -49,16 +54,6 @@ export default function Home() {
           <Search />
           <Filter />
         </div>
-
-        {/* <Collection 
-          data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={6}
-          page={page}
-          totalPages={events?.totalPages}
-        /> */}
       </section>
     </>
   );

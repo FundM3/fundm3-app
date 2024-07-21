@@ -24,7 +24,7 @@ export default function RainbowKitProvider({
   children,
 }: RainbowKitProviderProps) {
   const { isAuth, isAuthLoading } = useAuth();
-
+  
   const status = isAuthLoading
     ? 'loading'
     : isAuth
