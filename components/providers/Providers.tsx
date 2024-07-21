@@ -5,6 +5,7 @@ import { WagmiProvider, cookieToInitialState } from 'wagmi';
 import { config } from '@/lib/config/wagmi';
 import RainbowKitProvider from './RainbowKitProvider';
 import ReactQueryProvider from './ReactQueryProvider';
+import AuthProvider from './AuthProvider'; 
 
 type ProvidersProps = {
   children: ReactNode;
@@ -17,9 +18,11 @@ export default function Providers({ children, cookie }: ProvidersProps) {
   return (
     <WagmiProvider config={config} initialState={initialState}>
       <ReactQueryProvider>
-        <RainbowKitProvider>
-          {children}
-        </RainbowKitProvider>
+        <AuthProvider>
+          <RainbowKitProvider>
+            {children}
+          </RainbowKitProvider>
+        </AuthProvider>
       </ReactQueryProvider>
     </WagmiProvider>
   );

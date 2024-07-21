@@ -14,6 +14,7 @@ import { isAuthAction } from '@/lib/actions/auth';
 import { Optional } from '@/lib/types/common';
 import { eventEmitter } from '@/lib/config/eventEmitter';
 import { EMITTER_EVENTS } from '@/lib/constants';
+import { useAuth } from './AuthProvider'; 
 
 type RainbowKitProviderProps = {
   children: ReactNode;
@@ -22,26 +23,9 @@ type RainbowKitProviderProps = {
 export default function RainbowKitProvider({
   children,
 }: RainbowKitProviderProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuth, setIsAuth] = useState<Optional<boolean>>();
-  const { address } = useAccount();
+  const { isAuth, isAuthLoading } = useAuth();
 
-  useAsyncEffect(async () => {
-    const { isAuth } = await isAuthAction(address);
-
-    setIsAuth(isAuth);
-    setIsLoading(false);
-
-    eventEmitter.on(EMITTER_EVENTS.SIGN_IN, () => setIsAuth(true));
-
-    eventEmitter.on(EMITTER_EVENTS.SIGN_OUT, () => setIsAuth(false));
-
-    return () => {
-      eventEmitter.removeListener(EMITTER_EVENTS.SIGN_IN);
-    };
-  }, [address]);
-
-  const status = isLoading
+  const status = isAuthLoading
     ? 'loading'
     : isAuth
     ? 'authenticated'
