@@ -1,13 +1,38 @@
+'use client';
+
 import axios from 'axios';
+import { getCookie } from 'cookies-next';
+import { env } from '@/lib/config/env';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const NEXT_PUBLIC_BACKEND_URL = env.NEXT_PUBLIC_BACKEND_URL;
 
-const api = axios.create({
-  baseURL: BASE_URL,
+const apiPublic = axios.create({
+  baseURL: NEXT_PUBLIC_BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+const apiPrivate = axios.create({
+  baseURL: NEXT_PUBLIC_BACKEND_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+apiPrivate.interceptors.request.use(
+  config => {
+    const jwtCookie = getCookie('jwt');
+    const token = jwtCookie ? jwtCookie : '';
+    if (token) {
+      config.headers.set('Authorization', `Bearer ${token}`);
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 /**
  * 
@@ -16,7 +41,7 @@ const api = axios.create({
 */
 export const login = async (email: string, password: string) => {
   try {
-    const response = await api.post('/login/', { email, password });
+    const response = await apiPublic.post('/login/', { email, password });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -50,7 +75,7 @@ export const createProject = async (formData: {
   discord_url: string;
 }) => {
   try {
-    const response = await api.post('/project/create/', formData, {
+    const response = await apiPublic.post('/project/create/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -70,7 +95,7 @@ export const createProject = async (formData: {
 
 export const fetchProjectList = async () => {
   try {
-    const response = await api.get('/project/list');
+    const response = await apiPublic.get('/project/list');
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -86,7 +111,7 @@ export const fetchProjectList = async () => {
 
 export const fetchProjectDetails = async (id: number) => {
   try {
-    const response = await api.get(`/project/${id}`);
+    const response = await apiPublic.get(`/project/${id}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -106,21 +131,17 @@ export const fetchProjectDetails = async (id: number) => {
  * 
 */
 export const updateProfile = async (profileData: {
-  name: string;
-  email: string;
+  name?: string;
   address: string;
-  profile_img: string;
-  visible: boolean;
-  x_url: string;
-  github_url: string;
-  telegram_url: string;
+  fid?: int;
+  email?: string;
+  instagram?: string;
+  github?: string;
+  telegram?: string;
+  profilePicture?: string;
 }) => {
   try {
-    const response = await api.post('/profile/update/', profileData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await apiPrivate.post('user/update', profileData);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -136,7 +157,7 @@ export const updateProfile = async (profileData: {
 
 export const fetchProfileList = async () => {
   try {
-    const response = await api.get('/profile/list');
+    const response = await apiPublic.get('/profile/list');
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -152,7 +173,7 @@ export const fetchProfileList = async () => {
 
 export const fetchProfileDetails = async (address: string) => {
   try {
-    const response = await api.get(`/profile/${address}`);
+    const response = await apiPublic.get(`user/profile/${address}`);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -166,4 +187,4 @@ export const fetchProfileDetails = async (address: string) => {
   }
 };
 
-export default api;
+export { apiPublic, apiPrivate };
