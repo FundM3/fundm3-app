@@ -23,5 +23,5 @@ export async function POST(request: Request) {
 
   const jwtToken = generateJWT({ sub: fields.address }, env.JWT_SECRET_KEY);
 
-  return NextResponse.json({ jwt: jwtToken });
+  return NextResponse.json({ jwt: jwtToken, address: fields.address });
 }

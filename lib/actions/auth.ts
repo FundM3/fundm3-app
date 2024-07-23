@@ -6,8 +6,30 @@ import { getAddress } from 'viem';
 import { COOKIE_KEYS } from '../constants';
 import { env } from '@/lib/config/env';
 
-export async function signInAction(jwt: string) {
+export async function setJwtToken(jwt: string) {
   cookies().set(COOKIE_KEYS.JWT, jwt, { secure: true });
+}
+
+export async function signInAction(address: string, jwtToken: string) {
+  try {
+    const response = await fetch(`${env.BACKEND_URL}/user/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwtToken}`
+      },
+      body: JSON.stringify({ address }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Sign in failed');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Signin error:', error);
+    return false;
+  }
 }
 
 export async function signOutAction() {
