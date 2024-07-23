@@ -36,27 +36,6 @@ apiPrivate.interceptors.request.use(
 
 /**
  * 
- * Login Related API
- * 
-*/
-export const login = async (email: string, password: string) => {
-  try {
-    const response = await apiPublic.post('/login/', { email, password });
-    return response.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response && error.response.data !== null && typeof error.response.data === 'object' && 'error' in error.response.data) {
-        const message = (error.response.data as { error: string }).error || "An error occurred during login";
-        throw new Error(message);
-      }
-      throw new Error("The request was made and the server responded with a status code that falls out of the range of 2xx");
-    }
-    throw new Error("A network error occurred or the request was not made");
-  }
-}
-
-/**
- * 
  * Projects Related API
  * 
 */
@@ -141,7 +120,7 @@ export const updateProfile = async (profileData: {
   profilePicture?: string;
 }) => {
   try {
-    const response = await apiPrivate.post('user/update', profileData);
+    const response = await apiPrivate.post('user/profile/update', profileData);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -157,7 +136,7 @@ export const updateProfile = async (profileData: {
 
 export const fetchProfileList = async () => {
   try {
-    const response = await apiPublic.get('/profile/list');
+    const response = await apiPublic.get('user/profile/list');
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
