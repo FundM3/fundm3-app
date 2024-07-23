@@ -61,7 +61,7 @@ const ProfileDetails = () => {
 					const data = await fetchProfileDetails(address);
 					setProfileData(data);
 					form.reset(data);
-					profilePictureRef.current = data.profilePicture || "";
+					profilePictureRef.current = data.warpcastPicture || "";
 				} catch (error) {
 					console.error("Failed to fetch profile data:", error);
 				}

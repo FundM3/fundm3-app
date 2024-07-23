@@ -8,7 +8,8 @@ export const env = createEnv({
    */
   server: {
     IRON_SESSION_PASSWORD: z.string().min(32),
-    JWT_SECRET_KEY: z.string().min(32)
+    JWT_SECRET_KEY: z.string().min(32),
+    BACKEND_URL: z.string().min(1)
   },
   /*
    * Environment variables available on the client (and server).
@@ -31,6 +32,7 @@ export const env = createEnv({
     NEXT_PUBLIC_WALLET_CONNECT_ID: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID,
     IRON_SESSION_PASSWORD: process.env.IRON_SESSION_PASSWORD,
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
-    NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL
+    NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL
   }
 });

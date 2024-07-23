@@ -1,6 +1,6 @@
 import { createAuthenticationAdapter } from '@rainbow-me/rainbowkit';
 import { SiweMessage } from 'siwe';
-import { signInAction, signOutAction } from '../actions/auth';
+import { setJwtToken, signInAction, signOutAction } from '../actions/auth';
 import { eventEmitter } from '../config/eventEmitter';
 import { EMITTER_EVENTS } from '../constants';
 
@@ -36,8 +36,8 @@ export const authenticationAdapter = createAuthenticationAdapter({
       throw new Error('Failed to verify signature');
     }
     const data = await response.json();
-
-    await signInAction(data.jwt);
+    await setJwtToken(data.jwt);
+    await signInAction(data.address, data.jwt);
 
     eventEmitter.emit(EMITTER_EVENTS.SIGN_IN);
 
