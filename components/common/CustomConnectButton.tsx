@@ -2,7 +2,17 @@
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuShortcut,
+} from "@/components/ui/dropdown-menu";
+import Link from 'next/link';
 
 export const CustomConnectButton = () => {
   return (
@@ -37,9 +47,11 @@ export const CustomConnectButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button className="btn text-white" onClick={openConnectModal} type="button">
-                    Connect Wallet
-                  </button>
+                  <div>
+                    <button className="btn text-white" onClick={openConnectModal} type="button">
+                      Connect Wallet
+                    </button>
+                  </div>
                 );
               }
               if (chain && chain.unsupported) {
@@ -51,9 +63,9 @@ export const CustomConnectButton = () => {
               }
               return (
                 <div className="max-w-64 w-full flex items-center justify-between text-white">
-                  <button className="btn mx-2" onClick={openChainModal} type="button">
+                  {/* <button className="btn mx-2" onClick={openChainModal} type="button">
                     Switch
-                  </button>
+                  </button> */}
                   <div 
                     className="flex justify-center items-center px-4 py-2 border border-neutral-700 bg-neutral-800/30 rounded-xl font-mono font-bold gap-x-2 cursor-pointer"
                     onClick={openAccountModal}
@@ -69,13 +81,29 @@ export const CustomConnectButton = () => {
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
-                    <p>Account</p>
+                    <p>Wallet</p>
                   </div>
-                  <div className='mx-2'>
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                  <div className='ml-2'>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <div className='pt-0.5'>
+                          <Avatar>
+                            <AvatarImage src="/assets/icons/profile.svg" alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                          </Avatar>
+                        </div>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <Link href="/profile" >
+                          <DropdownMenuItem>My Profile</DropdownMenuItem>
+                        </Link>
+                        <Link href="/">
+                          <DropdownMenuItem>My Sponsors</DropdownMenuItem>
+                        </Link>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                 </div>
               );

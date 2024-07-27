@@ -20,14 +20,19 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
+      <section className="bg-yellow bg-dotted-pattern bg-contain py-5 md:py-10">
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">Empower Dreams, Fuel Change</h1>
             <p className="p-regular-20 md:p-regular-24">Join a community of change makers on FundM3. Together, we can build a brighter future for all</p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="/projects">
-                Explore Now
+                Explore Projects
+              </Link>
+            </Button>
+            <Button size="lg" asChild className="button w-full sm:w-fit">
+              <Link href="/creators">
+                Explore Creators
               </Link>
             </Button>
           </div>
@@ -49,16 +54,6 @@ export default function Home() {
           <Search />
           <Filter />
         </div>
-
-        {/* <Collection 
-          data={events?.data}
-          emptyTitle="No Events Found"
-          emptyStateSubtext="Come back later"
-          collectionType="All_Events"
-          limit={6}
-          page={page}
-          totalPages={events?.totalPages}
-        /> */}
       </section>
     </>
   );

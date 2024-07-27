@@ -1,18 +1,29 @@
+'use client';
+
 import { ReactNode } from 'react';
-import ThemeProvider from './ThemeProvider';
+import { WagmiProvider, cookieToInitialState } from 'wagmi';
+import { config } from '@/lib/config/wagmi';
 import RainbowKitProvider from './RainbowKitProvider';
-import { headers } from 'next/headers';
+import ReactQueryProvider from './ReactQueryProvider';
+import AuthProvider from './AuthProvider'; 
 
 type ProvidersProps = {
   children: ReactNode;
+  cookie?: string | null;
 };
 
-export default async function Providers({ children }: ProvidersProps) {
-  const cookie = headers().get('cookie');
+export default function Providers({ children, cookie }: ProvidersProps) {
+  const initialState = cookieToInitialState(config, cookie);
 
   return (
-    <RainbowKitProvider cookie={cookie}>
-      {children}
-    </RainbowKitProvider>
+    <WagmiProvider config={config} initialState={initialState}>
+      <ReactQueryProvider>
+        <AuthProvider>
+          <RainbowKitProvider>
+            {children}
+          </RainbowKitProvider>
+        </AuthProvider>
+      </ReactQueryProvider>
+    </WagmiProvider>
   );
 }
