@@ -112,7 +112,7 @@ export const fetchProjectDetails = async (id: number) => {
 export const updateProfile = async (profileData: {
   name?: string;
   address: string;
-  fid?: int;
+  fid?: number;
   email?: string;
   instagram?: string;
   github?: string;
