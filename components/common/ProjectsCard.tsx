@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Image from "next/image"
 
@@ -17,7 +19,7 @@ interface Prop {
     anime: AnimeProp;
     index: number;
 }
-  
+
 const ProjectsCard = ({ anime }: Prop) => {
     return (
         <div className="max-w-sm rounded relative w-full">

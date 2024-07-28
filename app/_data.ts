@@ -142,4 +142,4 @@ export const data = [
       episodes_aired: 114,
       score: "8.39",
     },
-  ];
+];
