@@ -15,6 +15,10 @@ const Header = () => {
                     height={38}
                 />
             </Link>
+
+            <Link href="/create" className="text-white hover:bg-yellow ml-auto mr-[10px]">
+              Create Project
+            </Link>
             
             <CustomConnectButton />
         </div>
