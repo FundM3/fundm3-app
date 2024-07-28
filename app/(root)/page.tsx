@@ -56,7 +56,6 @@ export default function Home() {
         <h2 className="h2-bold">Features Projects</h2>
         <Separator />
 
-
         <h2 className="h2-bold">Features Creators</h2>
         <Separator />
       </section>

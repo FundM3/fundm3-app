@@ -1,5 +1,6 @@
 "use client"
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Search from '@/components/common/Search'
 import React from 'react'
 
