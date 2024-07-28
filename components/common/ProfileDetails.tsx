@@ -119,7 +119,7 @@ const ProfileDetails = () => {
 					/>
 				) : (
 					<div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-						<span className="text-gray-500">No Profile Image</span>
+						<span className="text-gray-500 text-center">No Profile Image</span>
 					</div>
 				)}
 			</div>
