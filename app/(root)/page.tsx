@@ -29,11 +29,18 @@ export default function Home() {
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">Empower Dreams, Fuel Change</h1>
             <p className="p-regular-20 md:p-regular-24">Join a community of change makers on FundM3. Together, we can build a brighter future for all</p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="/projects">
-                Explore More
-              </Link>
-            </Button>
+            <div>
+              <Button size="lg" className="button w-full sm:w-fit">
+                <Link href="/projects">
+                  Explore Projects
+                </Link>
+              </Button>
+              <Button size="lg" asChild className="button w-full lg:ml-4 sm:w-fit mt-4">
+                <Link href="/creators">
+                  Explore Creators
+                </Link>
+              </Button>
+            </div>
           </div>
 
           <Image 
