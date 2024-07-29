@@ -22,9 +22,9 @@ interface ProfileData {
 }
 
 interface ProfileListMeta {
-  page: string;
-  limit: string;
-  total: number;
+  page?: string;
+  limit?: string;
+  total?: number;
 }
 
 interface UserProfileResponse {
@@ -64,29 +64,36 @@ export const getProfileDetail = async (
     method: "get",
     url: `/user/profile/${address}`,
   });
-  return response.data;
+  return response.data!;
 };
 
 export const getProfileList = async (
   page: number = 1,
   limit: number = 10
 ): Promise<ProfileListResponse> => {
-  const response = await apiCall<ApiResponse<ProfileListResponse>>({
+  const response = await apiCall<ApiResponse<ProfileData[]>>({
     method: "get",
     url: "/user/profile/list",
     params: { page, limit },
   });
-  return { data: response.data, meta: response.meta };
+  if (!response.data || !response.meta) {
+    throw new Error("Invalid response from server");
+  }
+  return {
+    data: response.data,
+    meta: response.meta,
+  };
 };
 
 export const updateProfile = async (
   profileData: UpdateProfileRequest
-): Promise<ApiResponse<UserProfileResponse>> => {
+): Promise<UserProfileResponse> => {
   const response = await apiCall<ApiResponse<UserProfileResponse>>({
     method: "post",
     url: "/user/profile/update",
     data: profileData,
     isPrivate: true,
   });
-  return response.data;
+  
+  return response.data!;
 };

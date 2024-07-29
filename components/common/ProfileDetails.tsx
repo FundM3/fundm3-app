@@ -69,18 +69,18 @@ const ProfileDetails = () => {
 		};
 
 		fetchProfile();
-	}, [isAuth, address]);
+	}, [isAuth, address, form]);
 
 	const handleEditClick = () => {
 		setIsEditMode(true);
 	};
 
 	const handleCancelClick = () => {
-		form.reset(profileData);
+		form.reset(profileData || {});
 		setIsEditMode(false);
 	};
 
-	const onSubmit = async (values) => {
+	const onSubmit = async (values: any) => {
 		console.log('Submitting form with values:', values);
 		try {
 			await updateProfile(values);
