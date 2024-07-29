@@ -289,3 +289,76 @@ export const data_creator = [
         score: "8.39",
       },
 ]
+
+export interface Creator {
+    id: string;
+    title: string;
+    cover: string;
+    artists: string[];
+}
+  
+export const creators: Creator[] = [
+{
+    id: "1",
+    title: "Electronic Party",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg",
+    artists: ["Avicii", "Alok"],
+},
+{
+    id: "2",
+    title: "Trance",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_2_f9ymlx.jpg",
+    artists: ["Tiesto", "Armin Van Buuren"],
+},
+{
+    id: "3",
+    title: "Trap Vibes",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_3_grshca.jpg",
+    artists: ["Post Malone", "Travis Scott", "21 savage"],
+},
+{
+    id: "4",
+    title: "Beatles Classics",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_4_ap5xnb.jpg",
+    artists: ["The Beatles"],
+},
+{
+    id: "5",
+    title: "Electronic Dance",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_5_erjyb7.jpg",
+    artists: ["Deadmau5"],
+},
+{
+    id: "6",
+    title: "Cow songs",
+    cover:
+    "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776474/spotify-astro/R-15112137-1586815179-1911_fsyl58.jpg",
+    artists: ["Saint Hilda", "Canada Buffalo"],
+},
+{
+    id: "7",
+    title: "Electronic Party",
+    cover:
+        "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_1_yci5uf.jpg",
+    artists: ["Avicii", "Alok"],
+    },
+    {
+    id: "8",
+    title: "Trance",
+    cover:
+        "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776174/spotify-astro/playlist_2_f9ymlx.jpg",
+    artists: ["Tiesto", "Armin Van Buuren"],
+    },
+    {
+    id: "9",
+    title: "Trap Vibes",
+    cover:
+        "https://res.cloudinary.com/dp3ppkxo5/image/upload/v1693776175/spotify-astro/playlist_3_grshca.jpg",
+    artists: ["Post Malone", "Travis Scott", "21 savage"],
+    },
+];
