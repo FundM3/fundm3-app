@@ -25,7 +25,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 	const { address } = useAccount();
 
 	useAsyncEffect(async () => {
-		const { isAuth } = await isAuthAction(address);
+		const { isAuth } = await isAuthAction(address || "");
 		setIsAuth(isAuth);
 		setIsAuthLoading(false);
 

@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         yellow: "#FFD53E",
+        gray_text: "#989898",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -73,6 +74,9 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: {
+        'custom-pattern': "url('/assets/images/background.svg')"
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -16,7 +16,7 @@ const Filter = () => {
 
     return (
         <Select>
-          <SelectTrigger className="select-field">
+          <SelectTrigger className="lg:select-field-2 select-field">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>

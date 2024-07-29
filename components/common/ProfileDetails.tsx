@@ -69,18 +69,18 @@ const ProfileDetails = () => {
 		};
 
 		fetchProfile();
-	}, [isAuth, address]);
+	}, [isAuth, address, form]);
 
 	const handleEditClick = () => {
 		setIsEditMode(true);
 	};
 
 	const handleCancelClick = () => {
-		form.reset(profileData);
+		form.reset(profileData || {});
 		setIsEditMode(false);
 	};
 
-	const onSubmit = async (values) => {
+	const onSubmit = async (values: any) => {
 		console.log('Submitting form with values:', values);
 		try {
 			await updateProfile(values);
@@ -119,7 +119,7 @@ const ProfileDetails = () => {
 					/>
 				) : (
 					<div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-						<span className="text-gray-500">No Profile Image</span>
+						<span className="text-gray-500 text-center">No Profile Image</span>
 					</div>
 				)}
 			</div>

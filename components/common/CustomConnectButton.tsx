@@ -54,7 +54,7 @@ export const CustomConnectButton = () => {
                   </div>
                 );
               }
-              if (chain && chain.unsupported) {
+              if (chain && chain.unsupported && chain.id == 8453) {
                 return (
                   <button className="btn" onClick={openChainModal} type="button">
                     Wrong network
@@ -63,9 +63,9 @@ export const CustomConnectButton = () => {
               }
               return (
                 <div className="max-w-64 w-full flex items-center justify-between text-white">
-                  {/* <button className="btn mx-2" onClick={openChainModal} type="button">
+                  <button className="btn mx-2" onClick={openChainModal} type="button">
                     Switch
-                  </button> */}
+                  </button>
                   <div 
                     className="flex justify-center items-center px-4 py-2 border border-neutral-700 bg-neutral-800/30 rounded-xl font-mono font-bold gap-x-2 cursor-pointer"
                     onClick={openAccountModal}

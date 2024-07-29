@@ -1,3 +1,5 @@
+"use client"
+
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
@@ -14,6 +16,10 @@ const Header = () => {
                     width={128}
                     height={38}
                 />
+            </Link>
+
+            <Link href="/create" className="text-white hover:bg-yellow ml-auto mr-[10px]">
+              Create Project
             </Link>
             
             <CustomConnectButton />
