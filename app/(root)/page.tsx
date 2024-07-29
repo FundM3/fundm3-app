@@ -9,6 +9,7 @@ import Filter from "@/components/common/Filter";
 import SearchButton from "@/components/common/SearchButton";
 import { Separator } from "@/components/ui/separator";
 import ProjectsCollection from "@/components/common/Projects";
+import CreatorsCollection from "@/components/common/Creators";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -58,6 +59,7 @@ export default function Home() {
 
         <h2 className="h2-bold">Features Creators</h2>
         <Separator />
+        <CreatorsCollection limit={6} />
       </section>
     </>
   );

@@ -54,7 +54,7 @@ export const CustomConnectButton = () => {
                   </div>
                 );
               }
-              if (chain && chain.unsupported) {
+              if (chain && chain.unsupported && chain.id == 8453) {
                 return (
                   <button className="btn" onClick={openChainModal} type="button">
                     Wrong network
