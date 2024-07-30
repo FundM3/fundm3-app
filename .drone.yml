@@ -29,10 +29,8 @@ volumes:
     temp: {}
 
 trigger:
-  branch:
-    - deployment
   event:
-    - push
+    - custom
 
 
 
