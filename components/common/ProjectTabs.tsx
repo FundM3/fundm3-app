@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from '../ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
     Card,
@@ -8,14 +7,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
 import Image from 'next/image'
 import SponsorList from './SponsorList'
 
