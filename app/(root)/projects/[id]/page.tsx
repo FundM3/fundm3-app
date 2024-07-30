@@ -26,7 +26,7 @@ const ProjectDetail = () => {
               Created by <Link href="/creator-link">W3D</Link> | Latest Update 17 May 2024 | 888 Sponsors
             </p>
             <p className="text-gray-700 mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
             <div className="flex gap-4">
               <DonateButton />
