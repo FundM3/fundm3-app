@@ -33,7 +33,7 @@ const ProjectDetail = () => {
   return (
     <>
       <section className="bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-        <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
           <div className="md:w-1/3 flex justify-center items-center p-5">
             <div className="w-60 h-60 relative">
               <Image
@@ -74,7 +74,7 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
-      <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 px-[135px]'>
+      <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 px-[70px]'>
         <Tabs defaultValue="1">
             <div className="flex items-center">
                 <TabsList>
