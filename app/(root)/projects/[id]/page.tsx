@@ -29,7 +29,6 @@ const ProjectDetail = () => {
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
             </p>
             <div className="flex gap-4">
-              {/* <Button className="bg-black text-white px-4 py-2 rounded-full">Sponsor Me</Button> */}
               <DonateButton />
               <Button className="bg-black text-white px-4 py-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
