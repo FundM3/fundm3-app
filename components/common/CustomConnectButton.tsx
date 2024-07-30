@@ -102,6 +102,7 @@ export const CustomConnectButton = () => {
                         <Link href="/">
                           <DropdownMenuItem>My Sponsors</DropdownMenuItem>
                         </Link>
+                        <CustomConnectButton />
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>

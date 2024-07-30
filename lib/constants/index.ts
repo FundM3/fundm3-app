@@ -8,7 +8,7 @@ export const EMITTER_EVENTS = {
 };
 
 export const EXTERNAL_URLS: { [key: string]: string } = {
-  WARPCAST: "https://warpcast.com/~/profiles/",
+  FID: "https://warpcast.com/~/profiles/",
   INSTAGRAM: "https://instagram.com/",
   GITHUB: "https://github.com/",
   TELEGRAM: "https://t.me/",
