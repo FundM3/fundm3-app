@@ -1,0 +1,41 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: move_key
+    pull: never
+    image: fundm3_key:1.0
+    volumes:
+      - name: private_keys
+        path: /ssh_keys
+    commands:
+      - cp -r /keys/* /ssh_keys
+  - name: ssh
+    image: ghcr.io/appleboy/drone-ssh
+    volumes:
+      - name: private_keys
+        path: /ssh_keys
+    settings:
+      host:
+        from_secret: host
+      username:
+        from_secret: username
+      key_path: /ssh_keys/key
+      script:
+        - cd  ~/fundm3/apps/frontend
+        - bash deploy.sh
+volumes:
+  - name: private_keys
+    temp: {}
+
+trigger:
+  branch:
+    - deployment
+  event:
+    - push
+
+
+
+
+
+
