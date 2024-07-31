@@ -10,7 +10,7 @@ interface Project {
   };
 }
 
-interface ProfileData {
+export interface ProfileData {
   id: number;
   address: string;
   fid: number;

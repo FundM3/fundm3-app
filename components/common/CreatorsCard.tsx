@@ -1,73 +1,39 @@
 "use client"
 import React from 'react'
 import Image from "next/image"
+import { ProfileData } from '@/lib/api/userApi';
 
-export interface AnimeProp {
-    id: string;
-    name: string;
-    image: {
-      original: string;
-    };
-    kind: string;
-    episodes: number;
-    episodes_aired: number;
-    score: string;
-}
-  
-interface Prop {
-    anime: AnimeProp;
-    index: number;
-}
-
-const CreatorsCard = ({ anime }: Prop) => {
+const CreatorsCard = ({ profile }: any) => {
   return (
-    <div className="max-w-sm rounded relative w-full">
-      <div className="relative w-full h-[37vh]">
+    <div className="max-w-sm rounded-2xl shadow-lg relative w-full overflow-hidden">
+      <div className="relative w-full h-[200px] overflow-hidden">
         <Image
-          src={anime.image.original}
-          alt={anime.name}
-          fill
-          className="rounded-xl"
+          src={profile.warpcastPicture}
+          alt={profile.name}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-t-2xl"
         />
       </div>
-      <div className="py-4 flex flex-col gap-3">
+      <div className="py-4 px-4 flex flex-col gap-3">
+        <h2 className="text-black text-xs line-clamp-1 w-full">
+          {profile.name}
+        </h2>
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-black text-xl line-clamp-1 w-full">
-            {anime.name}
+            {profile.address}
           </h2>
-          <div className="py-1 px-2 bg-[#161921] rounded-sm">
-            <p className="text-white text-sm font-bold capitalize">
-              {anime.kind}
-            </p>
-          </div>
         </div>
         <div className="flex gap-4 items-center">
           <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="./episodes.svg"
-              alt="episodes"
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <p className="text-base text-black font-bold">
-              {anime.episodes || anime.episodes_aired}
+            <p className="text-base text-gray-500">
+              {profile.fid}
             </p>
-          </div>
-          <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="./star.svg"
-              alt="star"
-              width={18}
-              height={18}
-              className="object-contain"
-            />
-            <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default CreatorsCard
