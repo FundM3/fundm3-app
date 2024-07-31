@@ -8,7 +8,7 @@ interface ProjectsCardProps {
   project: ProjectData;
 }
 
-const ProjectsCard = ({ project }) => {
+const ProjectsCard = ({ project }: any) => {
   return (
     <div className="max-w-sm rounded-2xl shadow-lg relative w-full overflow-hidden">
       <div className="relative w-full h-[200px] overflow-hidden">
