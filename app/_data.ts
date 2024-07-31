@@ -362,3 +362,37 @@ export const creators: Creator[] = [
     artists: ["Post Malone", "Travis Scott", "21 savage"],
     },
 ];
+
+export interface Sponsor {
+    name: string;
+    email: string;
+    date: string;
+    amount: string;
+}
+  
+export const sponsors: Sponsor[] = [
+{
+    name: "Liam Johnson",
+    email: "liam@example.com",
+    date: "2023-06-23",
+    amount: "$250.00",
+},
+{
+    name: "Olivia Smith",
+    email: "olivia@example.com",
+    date: "2023-06-24",
+    amount: "$150.00",
+},
+{
+    name: "Noah Williams",
+    email: "noah@example.com",
+    date: "2023-06-25",
+    amount: "$350.00",
+},
+{
+    name: "Emma Brown",
+    email: "emma@example.com",
+    date: "2023-06-26",
+    amount: "$450.00",
+},
+  ];

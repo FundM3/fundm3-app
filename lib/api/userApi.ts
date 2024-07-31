@@ -10,7 +10,7 @@ interface Project {
   };
 }
 
-interface ProfileData {
+export interface ProfileData {
   id: number;
   address: string;
   fid: number;
@@ -27,17 +27,16 @@ interface ProfileListMeta {
   total?: number;
 }
 
-interface UserProfileResponse {
-  id: number;
-  address: string;
-  fid: number;
-  name: string;
-  email: string;
-  instagram: string;
-  github: string;
-  telegram: string;
-  profilePicture: string;
-  warpcastPicture: string;
+export interface UserProfileResponse {
+  id: number | null;
+  fid: number | null;
+  name: string | null;
+  email: string | null;
+  instagram: string | null;
+  github: string | null;
+  telegram: string | null;
+  profilePicture: string | null;
+  warpcastPicture: string | null;
   createdAt: string;
   updatedAt: string;
   ownedProjects?: Project[];
@@ -51,10 +50,12 @@ interface ProfileListResponse {
 
 interface UpdateProfileRequest {
   address: string;
-  name?: string;
-  instagram?: string;
-  github?: string;
-  telegram?: string;
+  fid?: number | null;
+  name?: string | null;
+  email?: string | null;
+  instagram?: string | null;
+  github?: string | null;
+  telegram?: string | null;
 }
 
 export const getProfileDetail = async (

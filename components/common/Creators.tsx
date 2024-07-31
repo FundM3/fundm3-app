@@ -1,22 +1,55 @@
 "use client"
 
-import React from 'react'
-import { data_creator } from '@/app/_data'
-import CreatorCard, { AnimeProp } from './CreatorsCard'
+import React, { useEffect, useState } from 'react'
+import CreatorCard from './CreatorsCard'
 import LoadMore from './LoadMore'
+import Link from 'next/link'
+import { getProfileList } from '@/lib/api/userApi'
+import { ProfileData } from '@/lib/api/userApi'
 
 interface CreatorsCollectionProps {
   limit?: number;
 }
 
 const CreatorsCollection: React.FC<CreatorsCollectionProps> = ({ limit }) => {
-  const displayData = limit ? data_creator.slice(0, limit) : data_creator;
+  // const displayData = limit ? data_creator.slice(0, limit) : data_creator;
+
+  const [profile, setProfile] = useState<ProfileData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const fetchProfilesData = async () => {
+    setLoading(true);
+    try {
+      const { data } = await getProfileList(1, limit || 10);
+      setProfile(data);
+    } catch (error) {
+      setError('Failed to fetch data');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfilesData();
+  }, [limit]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <>
       <section className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
-        {displayData.map((item: AnimeProp, index) => (
-          <CreatorCard key={item.id} anime={item} index={index} />
+        {profile.map((item: ProfileData) => (
+          <Link href={`/creators/${item.address}`} key={item.id}>
+            <CreatorCard key={item.address} profile={item} />
+          </Link>
         ))}
       </section>
       {/* <LoadMore /> */}

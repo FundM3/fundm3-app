@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 
 const SearchButton = () => {
   return (
-    <Button size="lg" className="button w-full sm:w-fit">
+    <Button size="lg" className="button w-full lg:w-fit">
         Search
     </Button>
   )
