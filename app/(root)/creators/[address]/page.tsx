@@ -1,8 +1,53 @@
-import React from 'react'
+"use client"
+
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getProfileDetail } from '@/lib/api/userApi'
+import { UserProfileResponse } from '@/lib/api/userApi'
+import { usePathname, useSearchParams } from 'next/navigation'
 
-const CreatorDetail = () => {
+
+const CreatorDetail = ({ params }: { params: { address: string } }) => {
+    const [profile, setProfile] = useState<UserProfileResponse | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
+
+    const address = params.address
+
+    // console.log(address)
+
+    const fetchProfileDetail = async (address: string) => {
+        setLoading(true)
+        try {
+          const data = await getProfileDetail(address)
+          console.log(data)
+          setProfile(data)
+        } catch (error) {
+          setError('Failed to fetch project details')
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        if (address) {
+            fetchProfileDetail(address)
+        }
+        }, [address])
+    
+        if (loading) {
+            return <p>Loading...</p>
+        }
+    
+        if (error) {
+            return <p>{error}</p>
+        }
+    
+        if (!profile) {
+            return <p>No profile found</p>
+        }   
     <>
         <section className="bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
             <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">

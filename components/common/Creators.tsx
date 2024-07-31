@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { data_creator } from '@/app/_data'
 import CreatorCard from './CreatorsCard'
 import LoadMore from './LoadMore'
 import Link from 'next/link'
@@ -48,8 +47,8 @@ const CreatorsCollection: React.FC<CreatorsCollectionProps> = ({ limit }) => {
     <>
       <section className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
         {profile.map((item: ProfileData) => (
-          <Link href={`/creators/${item.id}`} key={item.id}>
-            <CreatorCard key={item.id} profile={item} />
+          <Link href={`/creators/${item.address}`} key={item.id}>
+            <CreatorCard key={item.address} profile={item} />
           </Link>
         ))}
       </section>

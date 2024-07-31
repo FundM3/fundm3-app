@@ -7,7 +7,6 @@ import ProjectTabs from '@/components/common/ProjectTabs'
 import DonateButton from '@/components/common/DonateButton'
 import { getProjectDetail } from '@/lib/api/projectApi'
 import { ProjectResponse } from '@/lib/api/projectApi'
-import { usePathname, useSearchParams } from 'next/navigation'
 
 const ProjectDetail = ({ params }: { params: { id: string } }) => {
   const [project, setProject] = useState<ProjectResponse | null>(null)
