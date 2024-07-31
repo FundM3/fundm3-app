@@ -23,7 +23,7 @@ interface ProjectListMeta {
   total?: number;
 }
 
-interface ProjectResponse {
+export interface ProjectResponse {
   id: number;
   fid: number;
   name: string;

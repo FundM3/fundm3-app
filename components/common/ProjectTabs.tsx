@@ -10,6 +10,11 @@ import {
 import Image from 'next/image'
 import SponsorList from './SponsorList'
 
+interface TabsProps {
+  projectImageUrls: string[];
+  description: string;
+}
+
 const ProjectTabs = () => {
   return (
     <>
