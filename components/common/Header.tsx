@@ -18,7 +18,7 @@ const Header = () => {
                 />
             </Link>
 
-            <Link href="/create" className="text-white hover:bg-yellow ml-auto mr-[10px]">
+            <Link href="/create" className="text-white hover:text-yellow ml-auto px-5">
               Create Project
             </Link>
             

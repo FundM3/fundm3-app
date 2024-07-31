@@ -2,17 +2,9 @@
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuShortcut,
-} from "@/components/ui/dropdown-menu";
-import Link from 'next/link';
+import { Button } from '../ui/button';
+import Dropdown from './DropdownMenu';
+
 
 export const CustomConnectButton = () => {
   return (
@@ -48,9 +40,9 @@ export const CustomConnectButton = () => {
               if (!connected) {
                 return (
                   <div>
-                    <button className="btn text-white" onClick={openConnectModal} type="button">
+                    <Button className="btn text-white border-white bg-yellow rounded-full" onClick={openConnectModal} type="button">
                       Connect Wallet
-                    </button>
+                    </Button>
                   </div>
                 );
               }
@@ -81,31 +73,8 @@ export const CustomConnectButton = () => {
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
                     </div>
-                    <p>Wallet</p>
                   </div>
-                  <div className='ml-2'>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <div className='pt-0.5'>
-                          <Avatar>
-                            <AvatarImage src="/assets/icons/profile.svg" alt="@shadcn" />
-                            <AvatarFallback>CN</AvatarFallback>
-                          </Avatar>
-                        </div>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent>
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <Link href="/profile" >
-                          <DropdownMenuItem>My Profile</DropdownMenuItem>
-                        </Link>
-                        <Link href="/">
-                          <DropdownMenuItem>My Sponsors</DropdownMenuItem>
-                        </Link>
-                        <CustomConnectButton />
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </div>
+                  <Dropdown />
                 </div>
               );
             })()}

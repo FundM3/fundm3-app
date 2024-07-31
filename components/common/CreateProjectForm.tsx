@@ -233,7 +233,7 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Project Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your project name" {...field} className="input-field" />
+                    <Input placeholder="Your github project name" {...field} className="input-field" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -246,7 +246,7 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Wallet Address</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your project address" {...field} className="input-field" />
+                    <Input placeholder="Base Sepolia Address" {...field} className="input-field" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -272,7 +272,7 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Instagram</FormLabel>
                   <FormControl>
-                    <Input placeholder="Instagram" {...field} className="input-field" />
+                    <Input placeholder="@Instagram_handle" {...field} className="input-field" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -285,7 +285,7 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>GitHub Link</FormLabel>
                   <FormControl>
-                    <Input placeholder="GitHub" {...field} className="input-field" />
+                    <Input placeholder="@GitHub_handle" {...field} className="input-field" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -298,7 +298,7 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Telegram</FormLabel>
                   <FormControl>
-                    <Input placeholder="Telegram" {...field} className="input-field" />
+                    <Input placeholder="@Telegram_handle" {...field} className="input-field" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -324,7 +324,7 @@ const CreateProjectForm = () => {
         
         <Button 
           type="submit" 
-          className="mt-[30px] lg:w-[10%] lg:ml-auto sm:w-[100%]"
+          className="mt-[30px] lg:w-[10%] lg:ml-auto sm:w-[100%] bg-black"
           disabled={!isFormValid()}
         >
           Create Project
