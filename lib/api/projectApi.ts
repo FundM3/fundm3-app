@@ -8,7 +8,7 @@ interface User {
   warpcastPicture: string;
 }
 
-interface ProjectData {
+export interface ProjectData {
   id: number;
   name: string;
   address: string;
