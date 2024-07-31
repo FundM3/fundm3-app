@@ -1,9 +1,3 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/FbxA3tKCB02
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-
 "use client"
 
 import { useState } from "react"
@@ -12,22 +6,57 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import Spinner from "./Spinner"
+import { 
+    type BaseError, 
+    useSendTransaction, 
+    useWaitForTransactionReceipt 
+} from 'wagmi' 
+import { parseEther } from 'viem'
 
-export default function DonateButton() {
+interface Props {
+    address: string
+}
+
+export default function DonateButton({ address }: Props) {
+    const [amount, setAmount] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState<boolean | null>(null)
+
+    // const { 
+    //     data: hash,
+    //     error, 
+    //     isPending, 
+    //     sendTransaction 
+    // } = useSendTransaction() 
+
+    // console.log(error)
+
+    console.log(address)
+
+    const { sendTransaction } = useSendTransaction()
+
+    console.log(sendTransaction)
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
         setIsLoading(true)
         setIsSuccess(null)
-    
-        setTimeout(() => {
-          const isSuccess = Math.random() > 0.5
-          setIsSuccess(isSuccess)
-          setIsLoading(false)
-        }, 2000)
+
+        // const transaction = await sendTransaction.sendTransaction()
+        // if (transaction) {
+        //     const receipt = await transaction.wait()
+        //     if (receipt.status === 1) {
+        //         setIsSuccess(true)
+        //     } else {
+        //         setIsSuccess(false)
+        //     }
+        // }
+        // setIsLoading(false)
     }
+
+    // const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt(
+    //     {  hash, }
+    // ) 
 
     return (
         <Dialog>
@@ -36,79 +65,72 @@ export default function DonateButton() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 {isLoading ? (
-                <div className="flex flex-col items-center justify-center p-6">
-                    <div className="loader" /> {/* 可以用一个实际的加载动画组件 */}
-                    <DialogTitle className="text-2xl font-bold mt-4">Processing...</DialogTitle>
-                    <Spinner />
-                </div>
+                    <div className="flex flex-col items-center justify-center p-6">
+                        <div className="loader" />
+                        <DialogTitle className="text-2xl font-bold mt-4">Processing...</DialogTitle>
+                        <Spinner />
+                    </div>
                 ) : isSuccess !== null ? (
-                <div className="flex flex-col items-center justify-center p-6">
-                    {isSuccess ? (
-                    <>
-                        <DialogTitle className="text-2xl font-bold mt-4">Success!</DialogTitle>
-                        <DialogDescription className="text-muted-foreground">
-                        Your donation was successful.
-                        </DialogDescription>
-                    </>
-                    ) : (
-                    <>
-                        <DialogTitle className="text-2xl font-bold mt-4">Failure</DialogTitle>
-                        <DialogDescription className="text-muted-foreground">
-                        There was an error processing your donation.
-                        </DialogDescription>
-                    </>
-                    )}
-                    <DialogClose asChild>
-                    <Button className="mt-4">Close</Button>
-                    </DialogClose>
-                </div>
+                    <div className="flex flex-col items-center justify-center p-6">
+                        {isSuccess ? (
+                        <>
+                            <DialogTitle className="text-2xl font-bold mt-4">Success!</DialogTitle>
+                            <DialogDescription className="text-muted-foreground">
+                                Your donation was successful.
+                            </DialogDescription>
+                        </>
+                        ) : (
+                        <>
+                            <DialogTitle className="text-2xl font-bold mt-4">Failure</DialogTitle>
+                            <DialogDescription className="text-muted-foreground">
+                                There was an error processing your donation.
+                            </DialogDescription>
+                        </>
+                        )}
+                        <DialogClose asChild>
+                        <Button className="mt-4">Close</Button>
+                        </DialogClose>
+                    </div>
                 ) : (
-                <div className="flex flex-col gap-4 p-6">
-                    <div className="space-y-2">
-                    <DialogTitle className="text-2xl font-bold">Donate with Crypto</DialogTitle>
-                    <DialogDescription className="text-muted-foreground">
-                        Enter your the amount you&apos;d like to pay.
-                    </DialogDescription>
+                    <div className="flex flex-col gap-4 p-6">
+                        <div className="space-y-2">
+                            <DialogTitle className="text-2xl font-bold">Donate with Crypto</DialogTitle>
+                            <DialogDescription className="text-muted-foreground">
+                                Enter the amount you'd like to pay.
+                            </DialogDescription>
+                        </div>
+                        <form className="space-y-4" onSubmit={handleSubmit}>
+                            <div className="space-y-2">
+                                <Label htmlFor="wallet">Wallet Address</Label>
+                                <Input id="address" value={address} disabled />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="amount">Amount</Label>
+                                <Input 
+                                    id="amount" 
+                                    placeholder="Base Sepolia ETH" 
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                />
+                            </div>
+                            <Button 
+                                type="submit" 
+                                className="w-full"
+                                // onClick={handleSubmit}
+                                disabled={!sendTransaction}
+                                onClick={() =>
+                                    sendTransaction({
+                                      to: `0x${address}`,
+                                      value: parseEther('0.01'),
+                                    })
+                                }
+                            >
+                                Submit
+                            </Button>
+                        </form>
                     </div>
-                    <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div className="space-y-2">
-                        <Label htmlFor="wallet">Wallet Address</Label>
-                        <Input id="wallet" placeholder="0x123456789..." />
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="amount">Amount</Label>
-                        <Input id="amount" type="number" placeholder="0.00" />
-                    </div>
-                    <Button type="submit" className="w-full">
-                        Submit
-                    </Button>
-                    </form>
-                    <DialogClose asChild>
-                    <Button variant="ghost" className="absolute top-4 right-4 rounded-full p-1 hover:bg-muted">X</Button>
-                    </DialogClose>
-                </div>
                 )}
             </DialogContent>
         </Dialog>
     )
 }
-
-// function XIcon(props) {
-//   return (
-//     <svg
-//       {...props}
-//       xmlns="http://www.w3.org/2000/svg"
-//       width="24"
-//       height="24"
-//       viewBox="0 0 24 24"
-//       fill="none"
-//       stroke="currentColor"
-//       strokeWidth="2"
-//       strokeLinecap="round"
-//       strokeLinejoin="round"
-//     >
-//       <path d="M18 6 6 18" />
-//       <path d="m6 6 12 12" />
-//     </svg>
-//   )
-// }

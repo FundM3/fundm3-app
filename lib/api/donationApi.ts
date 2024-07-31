@@ -1,7 +1,7 @@
 import { apiCall } from "./apiCall";
 import { ApiResponse } from "../types/apiCommon";
 
-interface Donation {
+export interface Donation {
   id: number;
   transactionHash: string;
   donor: string;
@@ -13,7 +13,7 @@ interface Donation {
   timestamp: Date;
 }
 
-interface DonationResponse {
+export interface DonationResponse {
   donations: Donation[];
   total: number;
 }
