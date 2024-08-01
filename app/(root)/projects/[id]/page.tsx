@@ -17,6 +17,8 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
 
   const id = params.id
 
+  // console.log(id)
+
   const fetchProjectDetail = async (id: number) => {
     setLoading(true)
     try {
@@ -49,7 +51,8 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
   }
 
   const projectImageUrls = [project.details.logoUrl]
-
+  const projectId = project.id
+  
   return (
     <>
       <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
@@ -96,7 +99,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
       </section>
       
       <section className='wrapper mx-auto bg-white flex md:flex-row'>
-        <ProjectTabs description={project.description || "No Description"} projectImageUrls={projectImageUrls} />
+        <ProjectTabs description={project.description || "No Description"} projectImageUrls={projectImageUrls} projectId={projectId} />
       </section>
     </>
   )

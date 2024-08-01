@@ -14,9 +14,10 @@ import { Separator } from '../ui/separator'
 interface Props {
   projectImageUrls: string[];
   description: string;
+  projectId: number;
 }
 
-const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
+const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId }) => {
   return (
     <>
       <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
@@ -35,7 +36,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
                   {projectImageUrls.length > 0 && (
                     <div className="w-full h-80 relative mb-5">
                       <Image
-                        src={projectImageUrls[0]}  // 使用第一个图片作为主要展示
+                        src={projectImageUrls[0]}
                         alt="Project Image"
                         layout="fill"
                         objectFit="cover"
@@ -59,7 +60,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <SponsorList />
+                    <SponsorList projectId={projectId} />
                   </CardContent>
               </Card>
           </TabsContent>
