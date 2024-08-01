@@ -18,7 +18,7 @@ interface TabsProps {
 const ProjectTabs = () => {
   return (
     <>
-      <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10'>
+      <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
         <Tabs defaultValue="1">
           <div className="flex items-center">
               <TabsList>
@@ -50,7 +50,7 @@ const ProjectTabs = () => {
             </Card>
           </TabsContent>
           <TabsContent value="2">
-              <Card x-chunk="dashboard-05-chunk-3" className='w-full'>
+              <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
                     <CardTitle>Sponsor List</CardTitle>
                     <CardDescription>

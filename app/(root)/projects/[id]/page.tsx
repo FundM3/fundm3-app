@@ -48,7 +48,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <section className="bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
+      <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
           <div className="md:w-1/3 flex justify-center items-center p-5">
             <div className="w-60 h-60 relative">
@@ -94,7 +94,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
         </div>
       </section>
       
-      <section className='max-w-7xl mx-auto bg-white flex md:flex-row'>
+      <section className='wrapper mx-auto bg-white flex md:flex-row'>
         <ProjectTabs />
       </section>
     </>
