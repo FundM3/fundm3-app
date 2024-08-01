@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Spinner from "./Spinner";
 import { parseEther } from 'viem';
-import { useConnect, useAccount, useWriteContract } from 'wagmi';
+import { useConnect, useAccount, useWriteContract, useConnections } from 'wagmi';
 import { injected } from "wagmi/connectors";
 import { baseSepolia } from "viem/chains";
 
@@ -25,24 +25,29 @@ export default function DonateButton({ receipientAddress }: Props) {
     const [amount, setAmount] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
+    const [buttonText, setButtonText] = useState("Connect Wallet");
+    const connections = useConnections()
+    const isConnect = connections.length > 0 ? true : false
+    
+    useEffect(() => {
+        if (address) {
+            setButtonText("Submit");
+        } else {
+            setButtonText("Connect Wallet");
+        }
+    }, [address]);
 
     const handlePayment = async (e: React.FormEvent) => {
-        e.preventDefault(); // 阻止表單提交後的頁面刷新
+        e.preventDefault();
         try {
             setErrors('');
             setStarted(true);
             setIsLoading(true);
 
-            console.log(address)
-            
-
             if (!address) {
                 await connectAsync({ chainId: baseSepolia.id, connector: injected() });
+                return;
             }
-
-            console.log(receipientAddress)
-
-            console.log(amount)
 
             const data = await writeContractAsync({
                 chainId: baseSepolia.id,
@@ -64,7 +69,7 @@ export default function DonateButton({ receipientAddress }: Props) {
                     }
                 ],
                 args: [
-                    receipientAddress, // Receipient Address
+                    receipientAddress,
                 ],
                 value: parseEther(amount),
             });
@@ -81,31 +86,39 @@ export default function DonateButton({ receipientAddress }: Props) {
         }
     };
 
+    const handleReset = () => {
+        setIsSuccess(null);
+        setIsLoading(false);
+        setStarted(false);
+        setCompleted(false);
+        setErrors('');
+    }
+
     return (
         <Dialog>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild onClick={handleReset}>
                 <Button className="bg-black text-white px-4 py-2 rounded-full">Sponsor Me</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] rounded-2xl">
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center p-6">
                         <div className="loader" />
-                        <DialogTitle className="text-2xl font-bold mt-4">Processing...</DialogTitle>
+                        <DialogTitle className="text-2xl font-bold mt-4 mb-[25px]">Processing...</DialogTitle>
                         <Spinner />
                     </div>
                 ) : isSuccess !== null ? (
                     <div className="flex flex-col items-center justify-center p-6">
                         {isSuccess ? (
                         <>
-                            <DialogTitle className="text-2xl font-bold mt-4">Success!</DialogTitle>
+                            <DialogTitle className="text-2xl font-bold mt-4 mb-[20px]">Success!</DialogTitle>
                             <DialogDescription className="text-muted-foreground">
                                 Your donation was successful.
                             </DialogDescription>
                         </>
                         ) : (
                         <>
-                            <DialogTitle className="text-2xl font-bold mt-4">Failure</DialogTitle>
-                            <DialogDescription className="text-muted-foreground">
+                            <DialogTitle className="text-2xl font-bold mt-4 mb-[20px]">Failure</DialogTitle>
+                            <DialogDescription className="text-muted-foreground mb-[20px]">
                                 There was an error processing your donation.
                             </DialogDescription>
                         </>
@@ -139,9 +152,9 @@ export default function DonateButton({ receipientAddress }: Props) {
                             <Button 
                                 type="submit" 
                                 className="w-full"
-                                disabled={!amount || started}
+                                disabled={(!amount && !address) || started}
                             >
-                                {started ? "Processing..." : "Submit"}
+                                {started || isConnect ? "Donate" : buttonText}
                             </Button>
                         </form>
                     </div>
