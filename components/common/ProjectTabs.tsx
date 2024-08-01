@@ -14,9 +14,10 @@ import { Separator } from '../ui/separator'
 interface Props {
   projectImageUrls: string[];
   description: string;
+  projectId: number;
 }
 
-const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
+const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId }) => {
   return (
     <>
       <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
@@ -24,18 +25,18 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
           <div className="flex items-center">
               <TabsList>
                   <TabsTrigger value="1">Description</TabsTrigger>
-                  <TabsTrigger value="2">Sponsor List</TabsTrigger>
+                  <TabsTrigger value="2">Donator List</TabsTrigger>
               </TabsList>
           </div>
           <Separator className="my-5" />
           <TabsContent value="1">
             <Card x-chunk="dashboard-05-chunk-1" className='border-none shadow-none'>
               <CardContent>
-                <div className="flex flex-col items-center px-[30px] py-[30px]">
+                <div className="flex flex-col items-center py-[30px]">
                   {projectImageUrls.length > 0 && (
                     <div className="w-full h-80 relative mb-5">
                       <Image
-                        src={projectImageUrls[0]}  // 使用第一个图片作为主要展示
+                        src={projectImageUrls[0]}
                         alt="Project Image"
                         layout="fill"
                         objectFit="cover"
@@ -53,13 +54,13 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
           <TabsContent value="2">
               <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
-                    <CardTitle>Sponsor List</CardTitle>
+                    <CardTitle>Donator List</CardTitle>
                     <CardDescription>
-                        Recent sponsor from your donators.
+                        Recent donation from your donators.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <SponsorList />
+                    <SponsorList projectId={projectId} />
                   </CardContent>
               </Card>
           </TabsContent>

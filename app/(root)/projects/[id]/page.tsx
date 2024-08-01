@@ -7,7 +7,6 @@ import ProjectTabs from '@/components/common/ProjectTabs'
 import DonateButton from '@/components/common/DonateButton'
 import { getProjectDetail } from '@/lib/api/projectApi'
 import { ProjectResponse } from '@/lib/api/projectApi'
-import { formatDate } from '@/lib/utils/formatters'
 import { Button } from '@/components/ui/button'
 import { EXTERNAL_URLS } from '@/lib/constants'
 
@@ -50,7 +49,8 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
   }
 
   const projectImageUrls = [project.details.logoUrl]
-
+  const projectId = project.id
+  
   return (
     <>
       <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
@@ -68,9 +68,6 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
           </div>
           <div className="md:w-2/3 p-5">
             <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
-            <p className="text-gray-500 mb-2">
-              Created by <Link href="/creator-link">{project.owner.name}</Link> | Create At {formatDate(project.createdAt)}
-            </p>
             <p className="text-gray-700 mb-4">
               {project.description || "No Description"}
             </p>
@@ -100,7 +97,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
       </section>
       
       <section className='wrapper mx-auto bg-white flex md:flex-row'>
-        <ProjectTabs description={project.description || "No Description"} projectImageUrls={projectImageUrls} />
+        <ProjectTabs description={project.description || "No Description"} projectImageUrls={projectImageUrls} projectId={projectId} />
       </section>
     </>
   )

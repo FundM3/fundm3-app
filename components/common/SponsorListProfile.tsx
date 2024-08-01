@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { getDonationsByProjectId } from '@/lib/api/donationApi'  
+import { getDonationsByDonor } from '@/lib/api/donationApi'  
 import { middleEllipsis } from '@/lib/utils/common'
 import { formatDate } from '@/lib/utils/formatters'
 
@@ -24,21 +24,19 @@ interface Donation {
 }
 
 interface SponsorListProps {
-  projectId: number;
+  donorAddress: string;
 }
 
-const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
+const SponsorListProfile: React.FC<SponsorListProps> = ({ donorAddress }) => {
   const [donations, setDonations] = useState<Donation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
-  // console.log('SponsorList Id', projectId)
 
   useEffect(() => {
     const fetchDonations = async () => {
       setLoading(true);
       try {
-        const data = await getDonationsByProjectId(projectId);
+        const data = await getDonationsByDonor(donorAddress);
         setDonations(data.donations);
       } catch (error) {
         setError('Failed to fetch donations');
@@ -49,7 +47,7 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
     };
 
     fetchDonations();
-  }, [projectId]);
+  }, [donorAddress]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -81,7 +79,7 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
                 {donation.email}
               </div> */}
             </TableCell>
-            <TableCell className="text-center">{formatDate(donation.timestamp) || ""}</TableCell>
+            <TableCell className="text-center">{formatDate(donation.timestamp.toISOString()) || ""}</TableCell>
             <TableCell className="text-right">{donation.totalAmount}</TableCell>
           </TableRow>
         ))}
@@ -90,4 +88,4 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
   )
 }
 
-export default SponsorList
+export default SponsorListProfile
