@@ -94,7 +94,9 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
         </div>
       </section>
       
-      <ProjectTabs />
+      <section className='max-w-7xl mx-auto bg-white flex md:flex-row'>
+        <ProjectTabs />
+      </section>
     </>
   )
 }
