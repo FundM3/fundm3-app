@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { getProfileDetail } from '@/lib/api/userApi'
 import { UserProfileResponse } from '@/lib/api/userApi'
 import DonateButton from '@/components/common/DonateButton'
-import { formatDate } from '@/lib/utils/formatters'
 import { EXTERNAL_URLS } from '@/lib/constants'
 import ProfileTabs from '@/components/common/ProfileTabs'
 
@@ -66,9 +65,6 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 					</div>
 					<div className="md:w-2/3 p-5">
 						<h1 className="text-2xl font-bold mb-2">{profile.name}</h1>
-						<p className="text-gray-500 mb-2">
-							Created by <Link href="/creator-link">{profile.name}</Link> | Create At {formatDate(profile.createdAt)}
-						</p>
 						<p className="text-gray-700 mb-4">
 							{profile.fid || "No Description"}
 						</p>
@@ -101,7 +97,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 			</section>
 			
 			<section className='wrapper mx-auto bg-white flex md:flex-row'>
-				<ProfileTabs />
+				<ProfileTabs ownedProjects={profile.ownedProjects} />
 			</section>
 		</>
 	)

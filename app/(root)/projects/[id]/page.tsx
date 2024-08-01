@@ -7,7 +7,6 @@ import ProjectTabs from '@/components/common/ProjectTabs'
 import DonateButton from '@/components/common/DonateButton'
 import { getProjectDetail } from '@/lib/api/projectApi'
 import { ProjectResponse } from '@/lib/api/projectApi'
-import { formatDate } from '@/lib/utils/formatters'
 import { Button } from '@/components/ui/button'
 import { EXTERNAL_URLS } from '@/lib/constants'
 
@@ -68,9 +67,6 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
           </div>
           <div className="md:w-2/3 p-5">
             <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
-            <p className="text-gray-500 mb-2">
-              Created by <Link href="/creator-link">{project.owner.name}</Link> | Create At {formatDate(project.createdAt)}
-            </p>
             <p className="text-gray-700 mb-4">
               {project.description || "No Description"}
             </p>

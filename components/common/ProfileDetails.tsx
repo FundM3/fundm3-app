@@ -139,9 +139,9 @@ const ProfileDetails = () => {
             "name",
             "email",
             "fid",
-            "instagram",
-            "github",
-            "telegram",
+            "@instagram_handle",
+            "@github_handle",
+            "@telegram_handle",
           ].map((fieldName) => (
             <FormField
               key={fieldName}

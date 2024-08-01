@@ -17,9 +17,9 @@ const CreatorsCard = ({ profile }: any) => {
         </div>
       </div>
       <div className="py-4 px-4 flex flex-col gap-3">
-        <h2 className="text-black text-xs line-clamp-1 w-full">
+        {/* <h2 className="text-black text-xs line-clamp-1 w-full">
           {profile.address}
-        </h2>
+        </h2> */}
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-black text-xl line-clamp-1 w-full">
             {profile.name}

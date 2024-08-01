@@ -115,12 +115,10 @@ const CreateProjectForm = () => {
     const formData = new FormData();
     formData.append("ownerAddress", address || "");
 
-    // 添加表單值
     Object.entries(values).forEach(([key, value]) => {
       if (value) formData.append(key, value);
     });
 
-    // 添加文件
     formData.append("logo", logoImage);
     formData.append("projectImage", projectImage);
 
@@ -162,7 +160,7 @@ const CreateProjectForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <div className="flex gap-5">
           <div className="flex flex-col gap-5 w-full md:w-1/2">
-            <FormLabel>Logo Image</FormLabel>
+            <FormLabel>Logo Image*</FormLabel>
             <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
               {logoImage ? (
                 <div className="relative h-full w-full">
@@ -193,7 +191,7 @@ const CreateProjectForm = () => {
             </div>
           </div>
           <div className="flex flex-col gap-5 w-full md:w-1/2">
-            <FormLabel>Other Image</FormLabel>
+            <FormLabel>Other Image*</FormLabel>
             <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
               {projectImage ? (
                 <div className="relative h-full w-full">
@@ -231,7 +229,7 @@ const CreateProjectForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Project Name</FormLabel>
+                  <FormLabel>Project Name*</FormLabel>
                   <FormControl>
                     <Input placeholder="Your github project name" {...field} className="input-field" />
                   </FormControl>
@@ -244,7 +242,7 @@ const CreateProjectForm = () => {
               name="projectAddress"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Wallet Address</FormLabel>
+                  <FormLabel>Wallet Address*</FormLabel>
                   <FormControl>
                     <Input placeholder="Base Sepolia Address" {...field} className="input-field" />
                   </FormControl>
@@ -257,7 +255,7 @@ const CreateProjectForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel>Email Address*</FormLabel>
                   <FormControl>
                     <Input placeholder="Email address" {...field} className="input-field" />
                   </FormControl>
@@ -283,7 +281,7 @@ const CreateProjectForm = () => {
               name="github"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>GitHub Link</FormLabel>
+                  <FormLabel>GitHub</FormLabel>
                   <FormControl>
                     <Input placeholder="@GitHub_handle" {...field} className="input-field" />
                   </FormControl>

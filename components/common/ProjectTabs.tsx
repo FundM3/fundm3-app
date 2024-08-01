@@ -24,7 +24,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
           <div className="flex items-center">
               <TabsList>
                   <TabsTrigger value="1">Description</TabsTrigger>
-                  <TabsTrigger value="2">Sponsor List</TabsTrigger>
+                  <TabsTrigger value="2">Donator List</TabsTrigger>
               </TabsList>
           </div>
           <Separator className="my-5" />
@@ -53,9 +53,9 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
           <TabsContent value="2">
               <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
-                    <CardTitle>Sponsor List</CardTitle>
+                    <CardTitle>Donator List</CardTitle>
                     <CardDescription>
-                        Recent sponsor from your donators.
+                        Recent donation from your donators.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
