@@ -11,19 +11,14 @@ import Image from 'next/image'
 import SponsorList from './SponsorList'
 import { Separator } from '../ui/separator'
 
-interface Props {
-  projectImageUrls: string[];
-  description: string;
-}
-
-const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
+const ProfileTabs = () => {
   return (
     <>
       <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
         <Tabs defaultValue="1">
           <div className="flex items-center">
               <TabsList>
-                  <TabsTrigger value="1">Description</TabsTrigger>
+                  <TabsTrigger value="1">Projects</TabsTrigger>
                   <TabsTrigger value="2">Sponsor List</TabsTrigger>
               </TabsList>
           </div>
@@ -31,7 +26,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
           <TabsContent value="1">
             <Card x-chunk="dashboard-05-chunk-1" className='border-none shadow-none'>
               <CardContent>
-                <div className="flex flex-col items-center px-[30px] py-[30px]">
+                {/* <div className="flex flex-col items-center px-[30px] py-[30px]">
                   {projectImageUrls.length > 0 && (
                     <div className="w-full h-80 relative mb-5">
                       <Image
@@ -46,7 +41,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
                   <p className="text-gray-700 mb-4">
                     {description}
                   </p>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           </TabsContent>
@@ -69,4 +64,4 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description }) => {
   )
 }
 
-export default ProjectTabs
+export default ProfileTabs

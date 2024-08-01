@@ -7,8 +7,8 @@ import { getProfileDetail } from '@/lib/api/userApi'
 import { UserProfileResponse } from '@/lib/api/userApi'
 import DonateButton from '@/components/common/DonateButton'
 import { formatDate } from '@/lib/utils/formatters'
-import ProfileTabs from '@/components/common/ProjectTabs'
 import { EXTERNAL_URLS } from '@/lib/constants'
+import ProfileTabs from '@/components/common/ProfileTabs'
 
 const CreatorDetail = ({ params }: { params: { address: string } }) => {
 	const [profile, setProfile] = useState<UserProfileResponse | null>(null)
