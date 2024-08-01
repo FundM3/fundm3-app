@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -157,11 +157,14 @@ const CreateProjectForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex gap-5">
-          <div className="flex flex-col gap-5 w-full md:w-1/2">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5"
+      >
+        <div className="flex gap-5 w-full">
+          <div className="flex flex-col gap-5 w-1/4">
             <FormLabel>Logo Image*</FormLabel>
-            <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
+            <div className="border-2 border-dashed border-gray-300 rounded-lg aspect-square w-full flex items-center justify-center relative">
               {logoImage ? (
                 <div className="relative h-full w-full">
                   <Image
@@ -182,17 +185,26 @@ const CreateProjectForm = () => {
                 </div>
               ) : (
                 <>
-                  <input type="file" accept="image/*" onChange={handleLogoImageChange} className="hidden" id="logoImage" />
-                  <label htmlFor="logoImage" className="text-gray-400 cursor-pointer">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleLogoImageChange}
+                    className="hidden"
+                    id="logoImage"
+                  />
+                  <label
+                    htmlFor="logoImage"
+                    className="text-gray-400 cursor-pointer"
+                  >
                     Upload your image here, or browse
                   </label>
                 </>
               )}
             </div>
           </div>
-          <div className="flex flex-col gap-5 w-full md:w-1/2">
-            <FormLabel>Other Image*</FormLabel>
-            <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
+          <div className="flex flex-col gap-5 w-3/4">
+            <FormLabel>Project Image*</FormLabel>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg aspect-[3/1] w-full flex items-center justify-center relative">
               {projectImage ? (
                 <div className="relative h-full w-full">
                   <Image
@@ -213,8 +225,17 @@ const CreateProjectForm = () => {
                 </div>
               ) : (
                 <>
-                  <input type="file" accept="image/*" onChange={handleProjectImageChange} className="hidden" id="projectImage" />
-                  <label htmlFor="projectImage" className="text-gray-400 cursor-pointer">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleProjectImageChange}
+                    className="hidden"
+                    id="projectImage"
+                  />
+                  <label
+                    htmlFor="projectImage"
+                    className="text-gray-400 cursor-pointer"
+                  >
                     Upload your image here, or browse
                   </label>
                 </>
@@ -231,7 +252,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Project Name*</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your github project name" {...field} className="input-field" />
+                    <Input
+                      placeholder="Your github project name"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -244,7 +269,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Wallet Address*</FormLabel>
                   <FormControl>
-                    <Input placeholder="Base Sepolia Address" {...field} className="input-field" />
+                    <Input
+                      placeholder="Base Sepolia Address"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -257,7 +286,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Email Address*</FormLabel>
                   <FormControl>
-                    <Input placeholder="Email address" {...field} className="input-field" />
+                    <Input
+                      placeholder="Email address"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -270,7 +303,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Instagram</FormLabel>
                   <FormControl>
-                    <Input placeholder="@Instagram_handle" {...field} className="input-field" />
+                    <Input
+                      placeholder="@Instagram_handle"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -283,7 +320,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>GitHub</FormLabel>
                   <FormControl>
-                    <Input placeholder="@GitHub_handle" {...field} className="input-field" />
+                    <Input
+                      placeholder="@GitHub_handle"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -296,7 +337,11 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Telegram</FormLabel>
                   <FormControl>
-                    <Input placeholder="@Telegram_handle" {...field} className="input-field" />
+                    <Input
+                      placeholder="@Telegram_handle"
+                      {...field}
+                      className="input-field"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -311,7 +356,11 @@ const CreateProjectForm = () => {
                 <FormItem className="w-full h-full">
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Description" {...field} className="textarea rounded-2xl h-[90%]" />
+                    <Textarea
+                      placeholder="Description"
+                      {...field}
+                      className="textarea rounded-2xl h-[90%]"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -319,9 +368,9 @@ const CreateProjectForm = () => {
             />
           </div>
         </div>
-        
-        <Button 
-          type="submit" 
+
+        <Button
+          type="submit"
           className="mt-[30px] lg:w-[10%] lg:ml-auto sm:w-[100%] bg-black"
           disabled={!isFormValid()}
         >
@@ -337,7 +386,13 @@ const CreateProjectForm = () => {
       >
         {modalImage && (
           <div className="relative">
-            <Image src={modalImage} alt="Modal Preview" width={800} height={800} objectFit="contain" />
+            <Image
+              src={modalImage}
+              alt="Modal Preview"
+              width={800}
+              height={800}
+              objectFit="contain"
+            />
             <button
               type="button"
               onClick={closeModal}
@@ -349,7 +404,7 @@ const CreateProjectForm = () => {
         )}
       </Modal>
     </Form>
-  )
-}
+  );
+};
 
-export default CreateProjectForm
+export default CreateProjectForm;
