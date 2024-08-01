@@ -32,7 +32,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId
           <TabsContent value="1">
             <Card x-chunk="dashboard-05-chunk-1" className='border-none shadow-none'>
               <CardContent>
-                <div className="flex flex-col items-center px-[30px] py-[30px]">
+                <div className="flex flex-col items-center py-[30px]">
                   {projectImageUrls.length > 0 && (
                     <div className="w-full h-80 relative mb-5">
                       <Image
