@@ -60,11 +60,11 @@ export default function Home() {
           <SearchButton />
         </div>
 
-        <h2 className="h2-bold">Features Projects</h2>
+        <h2 className="h3-bold">Features Projects</h2>
         <Separator />
         <ProjectsCollection limit={8} />
 
-        <h2 className="h2-bold">Features Creators</h2>
+        <h2 className="h3-bold">Features Creators</h2>
         <Separator />
         <CreatorsCollection limit={6} />
       </section>
