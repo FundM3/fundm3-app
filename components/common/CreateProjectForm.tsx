@@ -163,7 +163,7 @@ const CreateProjectForm = () => {
         <div className="flex gap-5">
           <div className="flex flex-col gap-5 w-full md:w-1/2">
             <FormLabel>Logo Image</FormLabel>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
+            <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
               {logoImage ? (
                 <div className="relative h-full w-full">
                   <Image
@@ -194,7 +194,7 @@ const CreateProjectForm = () => {
           </div>
           <div className="flex flex-col gap-5 w-full md:w-1/2">
             <FormLabel>Other Image</FormLabel>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
+            <div className="text-center border-2 border-dashed border-gray-300 rounded-lg h-32 flex items-center justify-center relative">
               {projectImage ? (
                 <div className="relative h-full w-full">
                   <Image
