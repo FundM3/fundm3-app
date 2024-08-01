@@ -1,62 +1,85 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import Spinner from "./Spinner"
-import { 
-    type BaseError, 
-    useSendTransaction, 
-    useWaitForTransactionReceipt 
-} from 'wagmi' 
-import { parseEther } from 'viem'
+import { useState } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import Spinner from "./Spinner";
+import { parseEther } from 'viem';
+import { useConnect, useAccount, useWriteContract } from 'wagmi';
+import { injected } from "wagmi/connectors";
+import { baseSepolia } from "viem/chains";
 
 interface Props {
-    address: string
+    receipientAddress: string;
 }
 
-export default function DonateButton({ address }: Props) {
-    const [amount, setAmount] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
-    const [isSuccess, setIsSuccess] = useState<boolean | null>(null)
+export default function DonateButton({ receipientAddress }: Props) {
+    const { connectAsync } = useConnect();
+    const { address } = useAccount();
+    const { writeContractAsync } = useWriteContract();
+    const [started, setStarted] = useState(false);
+    const [completed, setCompleted] = useState(false);
+    const [errors, setErrors] = useState('');
+    const [amount, setAmount] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
-    // const { 
-    //     data: hash,
-    //     error, 
-    //     isPending, 
-    //     sendTransaction 
-    // } = useSendTransaction() 
+    const handlePayment = async (e: React.FormEvent) => {
+        e.preventDefault(); // 阻止表單提交後的頁面刷新
+        try {
+            setErrors('');
+            setStarted(true);
+            setIsLoading(true);
 
-    // console.log(error)
+            console.log(address)
+            
 
-    console.log(address)
+            if (!address) {
+                await connectAsync({ chainId: baseSepolia.id, connector: injected() });
+            }
 
-    const { sendTransaction } = useSendTransaction()
+            console.log(receipientAddress)
 
-    console.log(sendTransaction)
+            console.log(amount)
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault()
-        setIsLoading(true)
-        setIsSuccess(null)
-
-        // const transaction = await sendTransaction.sendTransaction()
-        // if (transaction) {
-        //     const receipt = await transaction.wait()
-        //     if (receipt.status === 1) {
-        //         setIsSuccess(true)
-        //     } else {
-        //         setIsSuccess(false)
-        //     }
-        // }
-        // setIsLoading(false)
-    }
-
-    // const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt(
-    //     {  hash, }
-    // ) 
+            const data = await writeContractAsync({
+                chainId: baseSepolia.id,
+                address: '0xD12Ad3de4a549e0Eb32c81790501d6DFE186606D', // Contract Address
+                functionName: 'donate',
+                abi: [
+                    {
+                        "inputs": [
+                            {
+                                "internalType": "address payable",
+                                "name": "recipient",
+                                "type": "address"
+                            }
+                        ],
+                        "name": "donate",
+                        "outputs": [],
+                        "stateMutability": "payable",
+                        "type": "function"
+                    }
+                ],
+                args: [
+                    receipientAddress, // Receipient Address
+                ],
+                value: parseEther(amount),
+            });
+            setCompleted(true);
+            setIsSuccess(true);
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+            setStarted(false);
+            setIsSuccess(false);
+            setErrors("Donate failed. Please try again.");
+        } finally { 
+            setIsLoading(false);
+        }
+    };
 
     return (
         <Dialog>
@@ -99,10 +122,10 @@ export default function DonateButton({ address }: Props) {
                                 Enter the amount you&apos;d like to pay.
                             </DialogDescription>
                         </div>
-                        <form className="space-y-4" onSubmit={handleSubmit}>
+                        <form className="space-y-4" onSubmit={handlePayment}>
                             <div className="space-y-2">
                                 <Label htmlFor="wallet">Wallet Address</Label>
-                                <Input id="address" value={address} disabled />
+                                <Input id="receipientAddress" value={receipientAddress} disabled />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="amount">Amount</Label>
@@ -116,21 +139,14 @@ export default function DonateButton({ address }: Props) {
                             <Button 
                                 type="submit" 
                                 className="w-full"
-                                // onClick={handleSubmit}
-                                disabled={!sendTransaction}
-                                onClick={() =>
-                                    sendTransaction({
-                                      to: `0x${address}`,
-                                      value: parseEther('0.01'),
-                                    })
-                                }
+                                disabled={!amount || started}
                             >
-                                Submit
+                                {started ? "Processing..." : "Submit"}
                             </Button>
                         </form>
                     </div>
                 )}
             </DialogContent>
         </Dialog>
-    )
+    );
 }
