@@ -11,7 +11,6 @@
     <img alt="backdrop" src="https://github.com/user-attachments/assets/b7d7df45-8ecb-406e-8ee9-148443abd1b1" width=15px height=15px />
   </a>
 <p>
----
     
 ## About FundM3
 We are a donation platform designed to support independent creators and projects worldwide. It integrates Farcaster Frames, allowing creators to showcase their projects by casting the frame on SocialFi, thereby enhancing visibility and engagement.
