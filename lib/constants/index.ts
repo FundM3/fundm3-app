@@ -12,4 +12,6 @@ export const EXTERNAL_URLS: { [key: string]: string } = {
   INSTAGRAM: "https://instagram.com/",
   GITHUB: "https://github.com/",
   TELEGRAM: "https://t.me/",
+  CAST: "https://warpcast.com/~/compose?",
+  FRAME: "https://frames.fund-m3.com/frame/donate"
 };
