@@ -45,7 +45,7 @@ const CreatorsCollection: React.FC<CreatorsCollectionProps> = ({ limit }) => {
 
   return (
     <>
-      <section className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
+      <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
         {profile.map((item: ProfileData) => (
           <Link href={`/creators/${item.address}`} key={item.id}>
             <CreatorCard key={item.address} profile={item} />

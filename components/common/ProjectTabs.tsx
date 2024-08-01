@@ -16,7 +16,7 @@ interface Props {
   description: string;
 }
 
-const ProjectTabs = () => {
+const ProfileTabs = () => {
   return (
     <>
       <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
@@ -67,4 +67,4 @@ const ProjectTabs = () => {
   )
 }
 
-export default ProjectTabs
+export default ProfileTabs
