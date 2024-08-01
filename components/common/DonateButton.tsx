@@ -96,7 +96,7 @@ export default function DonateButton({ address }: Props) {
                         <div className="space-y-2">
                             <DialogTitle className="text-2xl font-bold">Donate with Crypto</DialogTitle>
                             <DialogDescription className="text-muted-foreground">
-                                Enter the amount you'd like to pay.
+                                Enter the amount you&apos;d like to pay.
                             </DialogDescription>
                         </div>
                         <form className="space-y-4" onSubmit={handleSubmit}>

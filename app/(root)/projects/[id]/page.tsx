@@ -7,6 +7,7 @@ import ProjectTabs from '@/components/common/ProjectTabs'
 import DonateButton from '@/components/common/DonateButton'
 import { getProjectDetail } from '@/lib/api/projectApi'
 import { ProjectResponse } from '@/lib/api/projectApi'
+import { formatDate } from '@/lib/utils/formatters'
 
 const ProjectDetail = ({ params }: { params: { id: string } }) => {
   const [project, setProject] = useState<ProjectResponse | null>(null)
@@ -64,12 +65,12 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
           <div className="md:w-2/3 p-5">
             <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
             <p className="text-gray-500 mb-2">
-              Created by <Link href="/creator-link">{project.owner.name}</Link> | Create At {project.createdAt} | 888 Sponsors
+              Created by <Link href="/creator-link">{project.owner.name}</Link> | Create At {formatDate(project.createdAt)} | 888 Sponsors
             </p>
             <p className="text-gray-700 mb-4">
-              {project.description} | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+              {project.description || "No Description"}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 sticky">
               <DonateButton address={project.address} />
               <Button className="bg-black text-white px-4 py-2 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
