@@ -81,7 +81,7 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
                 {donation.email}
               </div> */}
             </TableCell>
-            <TableCell className="text-center">{formatDate(donation.timestamp.toISOString()) || ""}</TableCell>
+            <TableCell className="text-center">{formatDate(new Date(donation.timestamp).toISOString())|| ""}</TableCell>
             <TableCell className="text-right">{donation.totalAmount}</TableCell>
           </TableRow>
         ))}
