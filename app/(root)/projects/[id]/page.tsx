@@ -17,8 +17,6 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
 
   const id = params.id
 
-  // console.log(id)
-
   const fetchProjectDetail = async (id: number) => {
     setLoading(true)
     try {
