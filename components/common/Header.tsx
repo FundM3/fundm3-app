@@ -19,7 +19,7 @@ const Header = () => {
             </Link>
 
             <Link href="/create" className="text-white hover:text-yellow ml-auto px-5">
-              Create Project
+              Create
             </Link>
             
             <CustomConnectButton />

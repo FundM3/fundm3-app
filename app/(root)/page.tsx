@@ -53,18 +53,18 @@ export default function Home() {
         </div>
       </section> 
 
-      <section id="events" className="wrapper my-8 flex flex-col gap-8 md:gap-12">
+      <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <div className="flex w-full flex-col gap-5 md:flex-row">
           <Search />
           <Filter />
           <SearchButton />
         </div>
 
-        <h2 className="h2-bold">Features Projects</h2>
+        <h2 className="h3-bold">Features Projects</h2>
         <Separator />
         <ProjectsCollection limit={8} />
 
-        <h2 className="h2-bold">Features Creators</h2>
+        <h2 className="h3-bold">Features Creators</h2>
         <Separator />
         <CreatorsCollection limit={6} />
       </section>

@@ -23,7 +23,7 @@ const Projects = () => {
             <SearchButton />
           </div>
           
-          <div className="wrapper flex items-center justify-center sm:justify-between">
+          <div className="wrapper items-center justify-center sm:justify-between">
             <ProjectsCollection />
           </div>
       </section>

@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from "next/image"
 import { ProjectData } from '@/lib/api/projectApi'
+import { formatDate } from '@/lib/utils/formatters'
 
 interface ProjectsCardProps {
   project: ProjectData;
@@ -32,7 +33,7 @@ const ProjectsCard = ({ project }: any) => {
         <div className="flex gap-4 items-center">
           <div className="flex flex-row gap-2 items-center">
             <p className="text-base text-gray-500">
-              {project.createdAt}
+              {formatDate(project.createdAt)}
             </p>
           </div>
         </div>
