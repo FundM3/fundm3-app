@@ -72,7 +72,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 							{profile.fid || "No Description"}
 						</p>
 						<div className="flex gap-4 sticky">
-							<DonateButton address={profile.createdAt} />
+							<DonateButton receipientAddress={address} />
 							<Button className="bg-black text-white px-4 py-2 rounded-full">
 								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 									<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12.93A1 1 0 0010 4a1 1 0 00-1 .07v4.86A1 1 0 0010 11a1 1 0 001-1V5.07z" clipRule="evenodd" />
