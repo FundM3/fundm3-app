@@ -48,7 +48,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
     return <p>No project found</p>;
   }
 
-  const projectImageUrls = [project.details.logoUrl]
+  const projectImageUrls = project.details.projectImageUrls
   const projectId = project.id
   
   return (
