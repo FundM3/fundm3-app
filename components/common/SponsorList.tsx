@@ -69,7 +69,7 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
         <TableRow>
           <TableHead>Donated By</TableHead>
           <TableHead className="text-center">Date</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead className="text-right">Amount(ETH)</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -77,11 +77,8 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
           <TableRow key={index} className={index % 2 === 0 ? "bg-accent" : ""}>
             <TableCell>
               <div className="font-medium">{middleEllipsis(donation.donor, 5)}</div>
-              {/* <div className="hidden text-sm text-muted-foreground md:inline">
-                {donation.email}
-              </div> */}
             </TableCell>
-            <TableCell className="text-center">{formatDate(donation.timestamp.toISOString()) || ""}</TableCell>
+            <TableCell className="text-center">{formatDate(new Date(donation.timestamp).toISOString())|| ""}</TableCell>
             <TableCell className="text-right">{donation.totalAmount}</TableCell>
           </TableRow>
         ))}

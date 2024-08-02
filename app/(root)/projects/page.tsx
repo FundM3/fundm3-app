@@ -11,10 +11,11 @@ const Projects = () => {
       <section className="bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
           <div className="wrapper flex flex-col justify-center sm:justify-between">
             <h3 className='h3-bold text-left sm:text-left'>Projects</h3>
-            <p className="mt-5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, 
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            <p className="mt-5 text-justify">
+              For showcasing projects, aiming to build a communication bridge between developers and sponsors, 
+              thereby promoting the development and realization of public goods projects. 
+              This page not only displays current popular projects but also reserves space for future new projects, 
+              providing developers with a stage to showcase their creativity and achievements.
             </p>
           </div>
 

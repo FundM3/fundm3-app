@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from "next/image"
 
-const CreatorsCard = ({ profile }: any) => { 
+const CreatorsCard = ({ profile }: any) => {
   return (
     <div className="max-w-sm rounded-2xl shadow-xl relative w-full overflow-hidden">
       <div className="relative w-full h-[200px] overflow-hidden flex justify-center items-center bg-yellow">

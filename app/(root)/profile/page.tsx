@@ -12,7 +12,7 @@ const Profile = () => {
                 </div>
             </section>
 
-            <div className="wrapper my-8">
+            <div className="wrapper">
                 <ProfileDetails />
             </div>
         </>

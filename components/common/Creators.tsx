@@ -43,8 +43,6 @@ const CreatorsCollection: React.FC<CreatorsCollectionProps> = ({ limit }) => {
     return <p>{error}</p>;
   }
 
-  console.log(profile)
-
   return (
     <>
       <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">

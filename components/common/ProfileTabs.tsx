@@ -10,13 +10,19 @@ import {
 import Image from 'next/image'
 import SponsorListProfile from './SponsorListProfile'
 import { Separator } from '../ui/separator'
+import { Project } from '@/lib/api/userApi';
+import CreatorsCard from './CreatorsCard'
+import CreatorsProjectCollection from './CreatorProjectCollection'
 
 interface Props {
   address: string;
+  ownedProjects?: Project[];
+  name: string;
+  createDate: string;
 }
 
-const ProjectTabs: React.FC<Props> = ({ address }) => {
-    return (
+const ProjectTabs: React.FC<Props> = ({ address, ownedProjects, name, createDate }) => {
+  return (
     <>
       <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
         <Tabs defaultValue="1">
@@ -28,6 +34,7 @@ const ProjectTabs: React.FC<Props> = ({ address }) => {
           </div>
           <Separator className="my-5" />
           <TabsContent value="1">
+            <CreatorsProjectCollection ownedProjects={ownedProjects} name={name} createDate={createDate} />
           </TabsContent>
           <TabsContent value="2">
               <Card x-chunk="dashboard-05-chunk-3">
