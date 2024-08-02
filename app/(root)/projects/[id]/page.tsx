@@ -68,7 +68,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
           </div>
           <div className="md:w-2/3 p-5">
             <h1 className="text-2xl font-bold mb-2">{project.name}</h1>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 mb-4 text-justify">
               {project.description || "No Description"}
             </p>
             <div className="flex gap-4">

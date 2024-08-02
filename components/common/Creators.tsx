@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import CreatorCard from './CreatorsCard'
-import LoadMore from './LoadMore'
 import Link from 'next/link'
 import { getProfileList } from '@/lib/api/userApi'
 import { ProfileData } from '@/lib/api/userApi'
@@ -52,7 +51,6 @@ const CreatorsCollection: React.FC<CreatorsCollectionProps> = ({ limit }) => {
           </Link>
         ))}
       </section>
-      {/* <LoadMore /> */}
     </>
   )
 }

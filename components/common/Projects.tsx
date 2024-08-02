@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import ProjectsCard from './ProjectsCard'
-import LoadMore from './LoadMore'
 import Link from 'next/link'
 import { getProjectList } from '@/lib/api/projectApi'
 import { ProjectData } from '@/lib/api/projectApi'
@@ -50,7 +49,6 @@ const ProjectsCollection: React.FC<ProjectsCollectionProps> = ({ limit }) => {
           </Link>
         ))}
       </section>
-      {/* <LoadMore /> */}
     </>
   )
 }

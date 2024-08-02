@@ -44,7 +44,7 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId
                       />
                     </div>
                   )}
-                  <p className="text-gray-700 mb-4">
+                  <p className="text-gray-700 mb-4 text-justify">
                     {description}
                   </p>
                 </div>
