@@ -45,7 +45,7 @@ const ProjectTabs: React.FC<Props> = ({ address, ownedProjects, name, createDate
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <SponsorListProfile donorAddress={address} />
+                    <SponsorListProfile recipientAddress={address} />
                   </CardContent>
               </Card>
           </TabsContent>
