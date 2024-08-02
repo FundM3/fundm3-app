@@ -33,7 +33,7 @@ const Dropdown = () => {
                 <DropdownMenuItem>My Profile</DropdownMenuItem>
             </Link>
             <Link href={`/creators/${address}`}>
-                <DropdownMenuItem>My Donators</DropdownMenuItem>
+                <DropdownMenuItem>My Donors</DropdownMenuItem>
             </Link>
             </DropdownMenuContent>
         </DropdownMenu>

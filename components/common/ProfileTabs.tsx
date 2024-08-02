@@ -29,7 +29,7 @@ const ProjectTabs: React.FC<Props> = ({ address, ownedProjects, name, createDate
           <div className="flex items-center">
               <TabsList>
                   <TabsTrigger value="1">Project</TabsTrigger>
-                  <TabsTrigger value="2">Donator List</TabsTrigger>
+                  <TabsTrigger value="2">Donor List</TabsTrigger>
               </TabsList>
           </div>
           <Separator className="my-5" />
@@ -39,9 +39,9 @@ const ProjectTabs: React.FC<Props> = ({ address, ownedProjects, name, createDate
           <TabsContent value="2">
               <Card x-chunk="dashboard-05-chunk-3">
                   <CardHeader className="px-7">
-                    <CardTitle>Donator List</CardTitle>
+                    <CardTitle>Donor List</CardTitle>
                     <CardDescription>
-                        Recent donation from your donators.
+                        Recent donation from your donors.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
