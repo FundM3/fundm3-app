@@ -1,31 +1,39 @@
-"use client"
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import React from 'react'
-import { CustomConnectButton } from './CustomConnectButton'
+import Link from "next/link";
+import Image from "next/image";
+import React, { useState } from "react";
+import { CustomConnectButton } from "./CustomConnectButton";
 
 const Header = () => {
-  return (
-    <header className='w-full border-b bg-black'>
-        <div className='wrapper flex items-center justify-between'>
-            <Link href="/">
-                <Image 
-                    src="/assets/logos/logo.svg"
-                    alt='FundM3 Logo'
-                    width={128}
-                    height={38}
-                />
-            </Link>
+  const [isConnected, setIsConnected] = useState(false);
 
-            <Link href="/create" className="text-white hover:text-yellow ml-auto px-5">
+  return (
+    <header className="w-full border-b bg-black">
+      <div className="wrapper flex items-center justify-between h-20">
+        <Link href="/" className="flex items-center flex-shrink-0">
+          <Image
+            src="/assets/logos/logo.svg"
+            alt="FundM3 Logo"
+            width={128}
+            height={38}
+          />
+        </Link>
+
+        <div className="flex items-center h-full">
+          {isConnected && (
+            <Link
+              href="/create"
+              className="text-white hover:text-yellow px-5 h-full flex items-center"
+            >
               Create
             </Link>
-            
-            <CustomConnectButton />
+          )}
+          <CustomConnectButton onConnectedChange={setIsConnected} />
         </div>
+      </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

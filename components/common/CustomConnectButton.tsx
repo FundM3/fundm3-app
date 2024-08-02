@@ -1,12 +1,12 @@
 "use client";
 
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
-import { Button } from '../ui/button';
-import Dropdown from './DropdownMenu';
+import { Button } from "../ui/button";
+import Dropdown from "./DropdownMenu";
+import { useEffect, useState } from "react";
 
-
-export const CustomConnectButton = () => {
+export const CustomConnectButton = ({ onConnectedChange }) => {
   return (
     <ConnectButton.Custom>
       {({
@@ -18,21 +18,25 @@ export const CustomConnectButton = () => {
         authenticationStatus,
         mounted,
       }) => {
-        const ready = mounted && authenticationStatus !== 'loading';
+        const ready = mounted && authenticationStatus !== "loading";
         const connected =
           ready &&
           account &&
           chain &&
-          (!authenticationStatus || authenticationStatus === 'authenticated');
+          (!authenticationStatus || authenticationStatus === "authenticated");
+
+        useEffect(() => {
+          onConnectedChange(connected);
+        }, [connected, onConnectedChange]);
 
         return (
           <div
             {...(!ready && {
-              'aria-hidden': true,
-              'style': {
+              "aria-hidden": true,
+              style: {
                 opacity: 0,
-                pointerEvents: 'none',
-                userSelect: 'none',
+                pointerEvents: "none",
+                userSelect: "none",
               },
             })}
           >
@@ -40,7 +44,11 @@ export const CustomConnectButton = () => {
               if (!connected) {
                 return (
                   <div>
-                    <Button className="btn text-white border-white bg-yellow rounded-full" onClick={openConnectModal} type="button">
+                    <Button
+                      className="btn text-white  border-white bg-black hover:bg-yellow hover:text-black hover:border-black transition-colors duration-300 rounded-full"
+                      onClick={openConnectModal}
+                      type="button"
+                    >
                       Connect Wallet
                     </Button>
                   </div>
@@ -48,33 +56,41 @@ export const CustomConnectButton = () => {
               }
               if (chain && chain.unsupported && chain.id == 8453) {
                 return (
-                  <button className="btn" onClick={openChainModal} type="button">
+                  <button
+                    className="btn"
+                    onClick={openChainModal}
+                    type="button"
+                  >
                     Wrong network
                   </button>
                 );
               }
               return (
                 <div className="max-w-64 w-full flex items-center justify-between text-white">
-                  {/* <button className="btn mx-2" onClick={openChainModal} type="button">
-                    Switch
-                  </button> */}
-                  <div 
-                    className="flex justify-center items-center px-4 py-2 border border-neutral-700 bg-neutral-800/30 rounded-xl font-mono font-bold gap-x-2 cursor-pointer"
+                  <div
+                    className="flex justify-center items-center px-3 py-1.5 border border-neutral-700 bg-neutral-800/30 rounded-full font-mono font-bold cursor-pointer"
                     onClick={openAccountModal}
                   >
-                    <div
+                    {/* <div
                       role="button"
                       tabIndex={1}
-                      className="h-8 w-8 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+                      className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden mr-2"
                       style={{
-                        backgroundColor: emojiAvatarForAddress(account?.address ?? "").color,
+                        backgroundColor: emojiAvatarForAddress(
+                          account?.address ?? ""
+                        ).color,
                         boxShadow: "0px 2px 2px 0px rgba(81, 98, 255, 0.20)",
                       }}
                     >
                       {emojiAvatarForAddress(account?.address ?? "").emoji}
-                    </div>
+                    </div> */}
+                    <span className="text-sm truncate">
+                      {account.displayName}
+                    </span>
                   </div>
-                  <Dropdown />
+                  <div className="ml-2">
+                    <Dropdown />
+                  </div>
                 </div>
               );
             })()}
