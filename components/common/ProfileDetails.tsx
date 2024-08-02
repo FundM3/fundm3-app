@@ -37,10 +37,40 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
+const fieldDisplayNames = {
+  address: "Address",
+  name: "Name",
+  email: "Email",
+  fid: "FID",
+  instagram: "Instagram",
+  github: "GitHub",
+  telegram: "Telegram",
+};
+
+const fieldPlaceholders = {
+  address: "0x...",
+  name: "Your full name",
+  email: "your.email@example.com",
+  fid: "Farcaster ID",
+  instagram: "username",
+  github: "username",
+  telegram: "username",
+};
+
+const DefaultUserIcon = () => (
+  <svg
+    className="w-full h-full text-gray-300"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+  </svg>
+);
+
 const ProfileDetails = () => {
   const { isAuth, isAuthLoading } = useAuth();
   const { address } = useAccount();
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(true);
   const [profileData, setProfileData] = useState<UserProfileResponse | null>(
     null
   );
@@ -103,113 +133,152 @@ const ProfileDetails = () => {
   }
 
   return (
-    <div>
-      <div className="mb-6 flex justify-center">
-        {profilePicture ? (
-          <Image
-            src={profilePicture}
-            alt="Profile Picture"
-            width={100}
-            height={100}
-            className="rounded-full"
-          />
-        ) : (
-          <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-            <span className="text-gray-500 text-center">No Profile Image</span>
-          </div>
-        )}
-      </div>
-      <Form {...form}>
-        {errorMessage && (
-          <div
-            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-            role="alert"
-          >
-            <strong className="font-bold">Error: </strong>
-            <span className="block sm:inline">{errorMessage}</span>
-          </div>
-        )}
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-5"
+    <div className="flex flex-col md:flex-row gap-8">
+      <div className="w-full md:w-1/5 flex justify-center md:justify-start">
+        <div
+          className="w-48 h-48 md:w-48 md:h-48 relative rounded-full overflow-hidden"
+          style={{ border: "2px solid #cccccc" }}
         >
-          {/* Form fields */}
-          {[
-            "address",
-            "name",
-            "email",
-            "fid",
-            "@instagram_handle",
-            "@github_handle",
-            "@telegram_handle",
-          ].map((fieldName) => (
-            <FormField
-              key={fieldName}
-              control={form.control}
-              name={fieldName as keyof FormValues}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
-                  </FormLabel>
-                  <div className="flex items-center gap-2">
-                    <FormControl className="flex-grow">
-                      <Input
-                        placeholder={`${
-                          fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
-                        }`}
-                        {...field}
-                        value={field.value || ""}
-                        className="input-field"
-                        disabled={
-                          fieldName === "address" ||
-                          fieldName === "fid" ||
-                          !isEditMode
-                        }
-                      />
-                    </FormControl>
-                    {!isEditMode &&
-                      field.value &&
-                      ["fid", "instagram", "github", "telegram"].includes(
-                        fieldName
-                      ) && (
-                        <Link
-                          href={`${EXTERNAL_URLS[fieldName.toUpperCase()]}${
-                            field.value
-                          }`}
-                          target="_blank"
-                          className="whitespace-nowrap"
-                        >
-                          Link
-                        </Link>
-                      )}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
+          {" "}
+          {/* 调整了大小 */}
+          {profilePicture ? (
+            <Image
+              src={profilePicture}
+              alt="Profile Picture"
+              layout="fill"
+              objectFit="cover"
             />
-          ))}
-          {isEditMode ? (
-            <div className="flex gap-3">
-              <Button type="submit">Save</Button>
-              <Button
-                type="button"
-                onClick={() => {
-                  form.reset(profileData || {});
-                  setErrorMessage(null);
-                  setIsEditMode(false);
-                }}
-              >
-                Cancel
-              </Button>
-            </div>
           ) : (
-            <Button type="button" onClick={() => setIsEditMode(true)}>
-              Edit
-            </Button>
+            <DefaultUserIcon />
           )}
-        </form>
-      </Form>
+        </div>
+      </div>
+      <div className="w-full md:w-4/5">
+        <Form {...form}>
+          {errorMessage && (
+            <div
+              className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+              role="alert"
+            >
+              <strong className="font-bold">Error: </strong>
+              <span className="block sm:inline">{errorMessage}</span>
+            </div>
+          )}
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-5 relative pb-16"
+          >
+            {[
+              "address",
+              "name",
+              "email",
+              "fid",
+              "instagram",
+              "github",
+              "telegram",
+            ].map((fieldName) => (
+              <FormField
+                key={fieldName}
+                control={form.control}
+                name={fieldName as keyof FormValues}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {
+                        fieldDisplayNames[
+                          fieldName as keyof typeof fieldDisplayNames
+                        ]
+                      }
+                    </FormLabel>
+                    <div className="flex items-center gap-2">
+                      <FormControl className="flex-grow">
+                        {["instagram", "github", "telegram"].includes(
+                          fieldName
+                        ) ? (
+                          <div className="flex items-center">
+                            <span className="text-gray-500 mr-2">@</span>
+                            <Input
+                              placeholder={
+                                fieldPlaceholders[
+                                  fieldName as keyof typeof fieldPlaceholders
+                                ]
+                              }
+                              {...field}
+                              value={field.value || ""}
+                              className="input-field flex-grow"
+                              disabled={!isEditMode}
+                            />
+                          </div>
+                        ) : (
+                          <Input
+                            placeholder={
+                              fieldPlaceholders[
+                                fieldName as keyof typeof fieldPlaceholders
+                              ]
+                            }
+                            {...field}
+                            value={field.value || ""}
+                            className="input-field"
+                            disabled={
+                              fieldName === "address" ||
+                              fieldName === "fid" ||
+                              !isEditMode
+                            }
+                          />
+                        )}
+                      </FormControl>
+                      {!isEditMode &&
+                        field.value &&
+                        ["fid", "instagram", "github", "telegram"].includes(
+                          fieldName
+                        ) && (
+                          <Link
+                            href={`${EXTERNAL_URLS[fieldName.toUpperCase()]}${
+                              field.value
+                            }`}
+                            target="_blank"
+                            className="whitespace-nowrap"
+                          >
+                            Link
+                          </Link>
+                        )}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            ))}
+            <div className="absolute bottom-0 right-0 flex gap-3">
+              {isEditMode ? (
+                <>
+                  <Button type="submit">Save</Button>
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      form.reset(profileData || {});
+                      setErrorMessage(null);
+                      setIsEditMode(false);
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsEditMode(true);
+                  }}
+                >
+                  Edit
+                </Button>
+              )}
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };
