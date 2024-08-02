@@ -1,81 +1,118 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { getProfileDetail } from '@/lib/api/userApi'
-import { UserProfileResponse } from '@/lib/api/userApi'
-import DonateButton from '@/components/common/DonateButton'
-import { EXTERNAL_URLS } from '@/lib/constants'
-import ProfileTabs from '@/components/common/ProfileTabs'
-import { formatDate } from '@/lib/utils/formatters'
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { getProfileDetail } from "@/lib/api/userApi";
+import { UserProfileResponse } from "@/lib/api/userApi";
+import DonateButton from "@/components/common/DonateButton";
+import { EXTERNAL_URLS } from "@/lib/constants";
+import ProfileTabs from "@/components/common/ProfileTabs";
+import { formatDate } from "@/lib/utils/formatters";
 
 const CreatorDetail = ({ params }: { params: { address: string } }) => {
-	const [profile, setProfile] = useState<UserProfileResponse | null>(null)
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState('')
+  const [profile, setProfile] = useState<UserProfileResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-	const address = params.address
+  const address = params.address;
 
-	const fetchProfileDetail = async (address: string) => {
-		setLoading(true)
-		try {
-			const data = await getProfileDetail(address)
-			// console.log(data)
-			setProfile(data)
-		} catch (error) {
-			setError('Failed to fetch creator details')
-			// console.error(error)
-		} finally {
-			setLoading(false)
-		}
-	}
+  const fetchProfileDetail = async (address: string) => {
+    setLoading(true);
+    try {
+      const data = await getProfileDetail(address);
+      // console.log(data)
+      setProfile(data);
+    } catch (error) {
+      setError("Failed to fetch creator details");
+      // console.error(error)
+    } finally {
+      setLoading(false);
+    }
+  };
 
-	useEffect(() => {
-		if (address) {
-		fetchProfileDetail(address)
-		}
-	}, [address])
+  useEffect(() => {
+    if (address) {
+      fetchProfileDetail(address);
+    }
+  }, [address]);
 
-	if (loading) {
-		return <p>Loading...</p>
-	}
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-	if (error) {
-		return <p>{error}</p>
-	}
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-	if (!profile) {
-		return <p>No profile found</p>
-	}
+  if (!profile) {
+    return <p>No profile found</p>;
+  }
 
-	const ownedProjects = profile.ownedProjects || [];
-	const name = profile.name || "";
-	const createDate = formatDate(profile.createdAt) || "";
+  const ownedProjects = profile.ownedProjects || [];
+  const name = profile.name || "";
+  const createDate = formatDate(profile.createdAt) || "";
 
-	return (
-		<>
-			<section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-				<div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
-					<div className="md:w-1/3 flex justify-center items-center p-5">
-						<div className="w-60 h-60 relative">
-							<Image
-								src={profile.warpcastPicture || ""}
-								alt={profile.name || ""}
-								layout="fill"
-								objectFit="cover"
-								className="rounded-full"
-							/>
-						</div>
-					</div>
-					<div className="md:w-2/3 p-5">
-						<h1 className="text-2xl font-bold mb-2">{profile.name}</h1>
-						<p className="text-gray-700 mb-4">
-							{profile.fid || "No Description"}
-						</p>
-						<div className="flex gap-4 sticky">
-							<DonateButton receipientAddress={address} />
-							{ profile.github != null && (
+  return (
+    <>
+      <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
+        <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+          <div className="md:w-1/3 flex justify-center items-center p-5">
+            <div
+              className="w-48 h-48 md:w-48 md:h-48 relative rounded-full overflow-hidden"
+              style={{ border: "2px solid #cccccc" }}
+            >
+              {profile.warpcastPicture ? (
+                <Image
+                  src={profile.warpcastPicture}
+                  alt="Profile Picture"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              ) : (
+                <svg
+                  className="w-full h-full text-gray-300"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              )}
+            </div>
+          </div>
+          <div className="md:w-2/3 p-5">
+            <h1 className="text-2xl font-bold mb-2">{profile.name}</h1>
+            {profile.fid && (
+              <div className="flex flex-row items-center gap-2 mb-4">
+                <div className="flex items-center justify-center w-6 h-6">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 1000 1000"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="1000" height="1000" rx="200" fill="#855DCD" />
+                    <path
+                      d="M257.778 155.556H742.222V844.444H671.111V528.889H670.414C662.554 441.677 589.258 373.333 500 373.333C410.742 373.333 337.446 441.677 329.586 528.889H328.889V844.444H257.778V155.556Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M128.889 253.333L157.778 351.111H182.222V746.667C169.949 746.667 160 756.616 160 768.889V795.556H155.556C143.283 795.556 133.333 805.505 133.333 817.778V844.444H382.222V817.778C382.222 805.505 372.273 795.556 360 795.556H355.556V768.889C355.556 756.616 345.606 746.667 333.333 746.667H306.667V253.333H128.889Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M675.556 746.667C663.283 746.667 653.333 756.616 653.333 768.889V795.556H648.889C636.616 795.556 626.667 805.505 626.667 817.778V844.444H875.556V817.778C875.556 805.505 865.606 795.556 853.333 795.556H848.889V768.889C848.889 756.616 838.94 746.667 826.667 746.667V351.111H851.111L880 253.333H702.222V746.667H675.556Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+                <p className="text-gray-700 text-base m-0">{profile.fid}</p>
+              </div>
+            )}
+            <div className="flex gap-4 sticky">
+              <DonateButton receipientAddress={address} />
+              {profile.github != null && (
                 <Link
                   href={`${EXTERNAL_URLS.GITHUB}${profile.github}`}
                   target="_blank"
@@ -93,7 +130,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
                 </Link>
               )}
 
-{profile.fid != null && (
+              {profile.fid != null && (
                 <Link
                   href={`${EXTERNAL_URLS.FID}${profile.fid}`}
                   target="_blank"
@@ -127,7 +164,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
                 </Link>
               )}
 
-							{/* { profile.github != null ?
+              {/* { profile.github != null ?
                 <Button className="bg-black text-white px-4 py-2 rounded-full">
 									<Link href={`${EXTERNAL_URLS.TELEGRAM}${profile.telegram}`}>
 										<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -137,22 +174,33 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 								</Button> :
                 	null
               } */}
-						</div>
-					</div>
-				</div>
-			</section>
-			
-			<section className='wrapper mx-auto bg-white flex md:flex-row'>
-				<ProfileTabs ownedProjects={ownedProjects} address={address} name={name} createDate={createDate} />
-			</section>
-		</>
-	)
-}
+            </div>
+          </div>
+        </div>
+      </section>
 
-const Button = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-    <button className={`flex items-center justify-center ${className}`}>
-      {children}
-    </button>
-)
+      <section className="wrapper mx-auto bg-white flex md:flex-row">
+        <ProfileTabs
+          ownedProjects={ownedProjects}
+          address={address}
+          name={name}
+          createDate={createDate}
+        />
+      </section>
+    </>
+  );
+};
 
-export default CreatorDetail
+const Button = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <button className={`flex items-center justify-center ${className}`}>
+    {children}
+  </button>
+);
+
+export default CreatorDetail;

@@ -139,8 +139,6 @@ const ProfileDetails = () => {
           className="w-48 h-48 md:w-48 md:h-48 relative rounded-full overflow-hidden"
           style={{ border: "2px solid #cccccc" }}
         >
-          {" "}
-          {/* 调整了大小 */}
           {profilePicture ? (
             <Image
               src={profilePicture}

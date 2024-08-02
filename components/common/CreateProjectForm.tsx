@@ -253,7 +253,7 @@ const CreateProjectForm = () => {
                   <FormLabel>Project Name*</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Your github project name"
+                      placeholder="Your project name"
                       {...field}
                       className="input-field"
                     />
@@ -303,11 +303,14 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Instagram</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="@Instagram_handle"
-                      {...field}
-                      className="input-field"
-                    />
+                    <div className="flex items-center">
+                      <span className="text-gray-500 mr-2">@</span>
+                      <Input
+                        placeholder="username"
+                        {...field}
+                        className="input-field"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -320,11 +323,14 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>GitHub</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="@GitHub_handle"
-                      {...field}
-                      className="input-field"
-                    />
+                    <div className="flex items-center">
+                      <span className="text-gray-500 mr-2">@</span>
+                      <Input
+                        placeholder="username"
+                        {...field}
+                        className="input-field"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -337,11 +343,14 @@ const CreateProjectForm = () => {
                 <FormItem>
                   <FormLabel>Telegram</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="@Telegram_handle"
-                      {...field}
-                      className="input-field"
-                    />
+                    <div className="flex items-center">
+                      <span className="text-gray-500 mr-2">@</span>
+                      <Input
+                        placeholder="username"
+                        {...field}
+                        className="input-field"
+                      />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
