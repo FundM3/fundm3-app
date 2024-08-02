@@ -194,9 +194,9 @@ const CreateProjectForm = () => {
                   />
                   <label
                     htmlFor="logoImage"
-                    className="text-gray-400 cursor-pointer"
+                    className="text-gray-400 cursor-pointer text-center"
                   >
-                    Upload your image here, or browse
+                    Upload & Browse
                   </label>
                 </>
               )}
@@ -234,9 +234,9 @@ const CreateProjectForm = () => {
                   />
                   <label
                     htmlFor="projectImage"
-                    className="text-gray-400 cursor-pointer"
+                    className="text-gray-400 cursor-pointer text-center"
                   >
-                    Upload your image here, or browse
+                    Upload & Browse
                   </label>
                 </>
               )}
