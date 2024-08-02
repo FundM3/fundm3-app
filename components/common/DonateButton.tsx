@@ -43,12 +43,18 @@ export default function DonateButton({ receipientAddress }: Props) {
             setErrors('');
             setStarted(true);
             setIsLoading(true);
-
+    
             if (!address) {
                 await connectAsync({ chainId: baseSepolia.id, connector: injected() });
                 return;
             }
-
+    
+            if (!receipientAddress || typeof receipientAddress !== 'string' || !receipientAddress.startsWith('0x')) {
+                throw new Error('Invalid recipient address');
+            }
+    
+            const validRecipientAddress = receipientAddress as `0x${string}`;
+    
             const data = await writeContractAsync({
                 chainId: baseSepolia.id,
                 address: '0xD12Ad3de4a549e0Eb32c81790501d6DFE186606D', // Contract Address
@@ -69,7 +75,7 @@ export default function DonateButton({ receipientAddress }: Props) {
                     }
                 ],
                 args: [
-                    receipientAddress,
+                    validRecipientAddress,
                 ],
                 value: parseEther(amount),
             });

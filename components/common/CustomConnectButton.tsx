@@ -1,12 +1,27 @@
 "use client";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { emojiAvatarForAddress } from "@/lib/utils/emojiAvatarForAddress";
 import { Button } from "../ui/button";
 import Dropdown from "./DropdownMenu";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-export const CustomConnectButton = ({ onConnectedChange }) => {
+interface CustomConnectButtonProps {
+  onConnectedChange: (connected: boolean) => void;
+}
+
+export const CustomConnectButton: React.FC<CustomConnectButtonProps> = ({
+  onConnectedChange,
+}) => {
+  const [isConnected, setIsConnected] = useState(false);
+
+  const handleConnectedChange = useCallback((connected: boolean) => {
+    setIsConnected(connected);
+  }, []);
+
+  useEffect(() => {
+    onConnectedChange(isConnected);
+  }, [isConnected, onConnectedChange]);
+
   return (
     <ConnectButton.Custom>
       {({
@@ -19,15 +34,16 @@ export const CustomConnectButton = ({ onConnectedChange }) => {
         mounted,
       }) => {
         const ready = mounted && authenticationStatus !== "loading";
-        const connected =
+        const connected = Boolean(
           ready &&
-          account &&
-          chain &&
-          (!authenticationStatus || authenticationStatus === "authenticated");
+            account &&
+            chain &&
+            (!authenticationStatus || authenticationStatus === "authenticated")
+        );
 
-        useEffect(() => {
-          onConnectedChange(connected);
-        }, [connected, onConnectedChange]);
+        if (connected !== isConnected) {
+          handleConnectedChange(connected);
+        }
 
         return (
           <div
@@ -45,7 +61,7 @@ export const CustomConnectButton = ({ onConnectedChange }) => {
                 return (
                   <div>
                     <Button
-                      className="btn text-white  border-white bg-black hover:bg-yellow hover:text-black hover:border-black transition-colors duration-300 rounded-full"
+                      className="btn text-white border-white bg-black hover:bg-yellow hover:text-black hover:border-black transition-colors duration-300 rounded-full"
                       onClick={openConnectModal}
                       type="button"
                     >
@@ -54,7 +70,7 @@ export const CustomConnectButton = ({ onConnectedChange }) => {
                   </div>
                 );
               }
-              if (chain && chain.unsupported && chain.id == 8453) {
+              if (chain && chain.unsupported && chain.id === 8453) {
                 return (
                   <button
                     className="btn"
@@ -71,21 +87,8 @@ export const CustomConnectButton = ({ onConnectedChange }) => {
                     className="flex justify-center items-center px-3 py-1.5 border border-neutral-700 bg-neutral-800/30 rounded-full font-mono font-bold cursor-pointer"
                     onClick={openAccountModal}
                   >
-                    {/* <div
-                      role="button"
-                      tabIndex={1}
-                      className="h-6 w-6 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden mr-2"
-                      style={{
-                        backgroundColor: emojiAvatarForAddress(
-                          account?.address ?? ""
-                        ).color,
-                        boxShadow: "0px 2px 2px 0px rgba(81, 98, 255, 0.20)",
-                      }}
-                    >
-                      {emojiAvatarForAddress(account?.address ?? "").emoji}
-                    </div> */}
                     <span className="text-sm truncate">
-                      {account.displayName}
+                      {account?.displayName ?? "Connect Wallet"}
                     </span>
                   </div>
                   <div className="ml-2">
