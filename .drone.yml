@@ -3,8 +3,7 @@ name: default
 
 steps:
   - name: move_key
-    pull: never
-    image: fundm3_key:1.0
+    image: 192.168.20.1:5000/fundm3_key:1.0
     volumes:
       - name: private_keys
         path: /ssh_keys
