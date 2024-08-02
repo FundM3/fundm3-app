@@ -21,11 +21,11 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 		setLoading(true)
 		try {
 			const data = await getProfileDetail(address)
-			console.log(data)
+			// console.log(data)
 			setProfile(data)
 		} catch (error) {
 			setError('Failed to fetch creator details')
-			console.error(error)
+			// console.error(error)
 		} finally {
 			setLoading(false)
 		}

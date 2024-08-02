@@ -75,9 +75,9 @@ export default function DonateButton({ receipientAddress }: Props) {
             });
             setCompleted(true);
             setIsSuccess(true);
-            console.log(data);
+            // console.log(data);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             setStarted(false);
             setIsSuccess(false);
             setErrors("Donate failed. Please try again.");
