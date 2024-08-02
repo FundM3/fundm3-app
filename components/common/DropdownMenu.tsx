@@ -10,8 +10,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAccount } from "wagmi";
 
 const Dropdown = () => {
+    const { address } = useAccount()
+
   return (
     <div className='ml-2 pt-[1px]'>
         <DropdownMenu>
@@ -29,7 +32,7 @@ const Dropdown = () => {
             <Link href="/profile" >
                 <DropdownMenuItem>My Profile</DropdownMenuItem>
             </Link>
-            <Link href="/">
+            <Link href={`/creators/${address}`}>
                 <DropdownMenuItem>My Donators</DropdownMenuItem>
             </Link>
             </DropdownMenuContent>

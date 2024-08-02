@@ -84,7 +84,7 @@ export const CustomConnectButton: React.FC<CustomConnectButtonProps> = ({
               return (
                 <div className="max-w-64 w-full flex items-center justify-between text-white">
                   <div
-                    className="flex justify-center items-center px-3 py-1.5 border border-neutral-700 bg-neutral-800/30 rounded-full font-mono font-bold cursor-pointer"
+                    className="flex justify-center items-center px-3 py-1.5 mr-[5px] border border-neutral-700 bg-neutral-800/30 rounded-full font-mono font-bold cursor-pointer"
                     onClick={openAccountModal}
                   >
                     <span className="text-sm truncate">
