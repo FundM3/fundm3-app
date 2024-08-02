@@ -8,6 +8,7 @@ import { UserProfileResponse } from '@/lib/api/userApi'
 import DonateButton from '@/components/common/DonateButton'
 import { EXTERNAL_URLS } from '@/lib/constants'
 import ProfileTabs from '@/components/common/ProfileTabs'
+import { formatDate } from '@/lib/utils/formatters'
 
 const CreatorDetail = ({ params }: { params: { address: string } }) => {
 	const [profile, setProfile] = useState<UserProfileResponse | null>(null)
@@ -31,10 +32,10 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 	}
 
 	useEffect(() => {
-    if (address) {
-      fetchProfileDetail(address)
-    }
-  }, [address])
+		if (address) {
+		fetchProfileDetail(address)
+		}
+	}, [address])
 
 	if (loading) {
 		return <p>Loading...</p>
@@ -49,6 +50,8 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 	}
 
 	const ownedProjects = profile.ownedProjects || [];
+	const name = profile.name || "";
+	const createDate = formatDate(profile.createdAt) || "";
 
 	return (
 		<>
@@ -99,8 +102,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 			</section>
 			
 			<section className='wrapper mx-auto bg-white flex md:flex-row'>
-				{/* <ProfileTabs ownedProjects={ownedProjects} address={address} /> */}
-				<ProfileTabs address={address} />
+				<ProfileTabs ownedProjects={ownedProjects} address={address} name={name} createDate={createDate} />
 			</section>
 		</>
 	)

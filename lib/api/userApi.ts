@@ -1,7 +1,7 @@
 import { apiCall } from "./apiCall";
 import { ApiResponse } from "../types/apiCommon";
 
-interface Project {
+export interface Project {
   id: number;
   name: string;
   address: string;
