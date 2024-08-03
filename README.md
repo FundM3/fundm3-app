@@ -15,6 +15,12 @@
 ## About FundM3
 We are a donation platform designed to support independent creators and projects worldwide. It integrates Farcaster Frames, allowing creators to showcase their projects by casting the frame on SocialFi, thereby enhancing visibility and engagement.
 
+## Techstack
+1. Frontend - Next.js & Wagmi & Shadcn-ui & Next-auth & SIWE & Rainbowkit 
+2. Backend - Nest.js & Postgres
+3. Smart Contract - Solidity & Foundry
+4. Frames - Frog & Neynar
+
 ## Problem
 - Lack of Transparency: Traditional donation platforms often suffer from a lack of transparency, leaving donors uncertain about how their contributions are being utilized. This can erode trust and deter potential sponsors from supporting projects.
 - GitHub Sponsor Limitations: Regional restrictions, such as the policy in Finland that prevents developers from accepting donations, present significant barriers. These limitations prevent developers from receiving financial support, hindering their ability to sustain and grow their projects.
