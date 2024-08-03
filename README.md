@@ -19,6 +19,9 @@ FundM3 is a donation platform designed to support independent creators and proje
 <a href="https://x.com/FundM3_official">
     <img alt="Twitter" src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" />
 </a>
+<a href="https://fund-m3.com/">
+    <img alt="FundM3" src="https://img.shields.io/badge/FundM3%20-FFD53E?style=FundM3" alt="FundM3">
+</a>
 
 ## Techstack 🛠
 1. **Frontend** - Next.js & Wagmi & Shadcn-ui & Next-auth & SIWE & Rainbowkit 
