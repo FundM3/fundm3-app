@@ -1,14 +1,8 @@
 <p align="center">
-<!--   <a href="https://fund-m3.com/">
-    <img src="public/assets/images/FundM3-Logo-02.jpg" alt="FundM3 logo ReadMe-01" width=20% height=20%>
-  </a> -->
-<!--   <a href="https://fund-m3.com/">
-    <img src="" alt="FundM3 logo ReadMe-01" width=80% height=80%>
-  </a> -->
+  <a href="https://fund-m3.com/">
+    <img src="public/assets/images/FundM3.png" alt="FundM3" width=100% height=100%>
+  </a>
 </p>
-
-![image](public/assets/images/FundM3-Logo-02.jpg)
-
 
 <!-- <p align="center">
   <a href="https://x.com/FundM3_official">
@@ -21,6 +15,10 @@
     
 ## Overview 👀
 FundM3 is a donation platform designed to support independent creators and projects worldwide. It integrates Farcaster Frames, allowing creators to showcase their projects by casting the frame on SocialFi, thereby enhancing visibility and engagement.
+
+<a href="https://x.com/FundM3_official">
+    <img alt="Twitter" src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" />
+</a>
 
 ## Techstack 🛠
 1. **Frontend** - Next.js & Wagmi & Shadcn-ui & Next-auth & SIWE & Rainbowkit 
