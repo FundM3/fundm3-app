@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://fund-m3.com/">
-    <img src="https://github.com/user-attachments/assets/1baedf67-c6a6-49cd-b20d-f9bf5dbaa581" alt="FundM3 logo ReadMe-01" width=80% height=80%>
+    ![FundM3 logo ReadMe-02](https://github.com/user-attachments/assets/af758353-8d0b-4108-b053-1ee50da8bc6b)
   </a>
 </p>
 <p align="center">
