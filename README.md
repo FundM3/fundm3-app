@@ -46,6 +46,7 @@ Base Sepolia Testnet - 0xD12Ad3de4a549e0Eb32c81790501d6DFE186606D
 - **Streamlined Donation Process**: FundM3 eliminates the need to navigate multiple webpages to make a donation. With the platform's seamless integration of Farcaster Frames and social media, users can donate directly through the same interface where they view and interact with project content. This convenience encourages more donations by reducing friction in the process.
 
 ## How it works? 🚢
+![FundM3 flow-01](https://github.com/user-attachments/assets/2bff9302-be36-431a-a671-188fe0863fb1)
 
 ## Our key features 🔐
 - **Convenience**: Allows users to donate directly on creator or project pages, or via Warpcast frame.
