@@ -20,7 +20,10 @@ FundM3 is a donation platform designed to support independent creators and proje
     <img alt="Twitter" src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white" />
 </a>
 <a href="https://fund-m3.com/">
-    <img alt="FundM3" src="https://img.shields.io/badge/FundM3%20-FFD53E?style=FundM3" alt="FundM3">
+    <img alt="FundM3" src="https://img.shields.io/badge/FundM3%20-FFD53E?style=FundM3" >
+</a>
+<a href="https://backdropbuild.com/builds/fundm3">
+  <img alt="Backdrop" src="https://img.shields.io/badge/Backdrop%20-0000FF?style=Backdrop" >
 </a>
 
 ## Techstack 🛠
