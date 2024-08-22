@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -6,10 +6,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { getDonationsByProjectId } from '@/lib/api/donationApi'  
-import { middleEllipsis } from '@/lib/utils/common'
-import { formatDate } from '@/lib/utils/formatters'
+} from "@/components/ui/table";
+import { getDonationsByProjectId } from "@/lib/api/donationApi";
+import { middleEllipsis } from "@/lib/utils/common";
+import { formatDate } from "@/lib/utils/formatters";
 
 interface Donation {
   id: number;
@@ -30,7 +30,7 @@ interface SponsorListProps {
 const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
   const [donations, setDonations] = useState<Donation[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   // console.log('SponsorList Id', projectId)
 
@@ -41,7 +41,7 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
         const data = await getDonationsByProjectId(projectId);
         setDonations(data.donations);
       } catch (error) {
-        setError('Failed to fetch donations');
+        setError("Failed to fetch donations");
         console.error(error);
       } finally {
         setLoading(false);
@@ -76,15 +76,19 @@ const SponsorList: React.FC<SponsorListProps> = ({ projectId }) => {
         {donations.map((donation, index) => (
           <TableRow key={index} className={index % 2 === 0 ? "bg-accent" : ""}>
             <TableCell>
-              <div className="font-medium">{middleEllipsis(donation.donor, 5)}</div>
+              <div className="font-medium">
+                {middleEllipsis(donation.donor, 5)}
+              </div>
             </TableCell>
-            <TableCell className="text-center">{formatDate(new Date(donation.timestamp).toISOString())|| ""}</TableCell>
+            <TableCell className="text-center">
+              {formatDate(new Date(donation.timestamp).toISOString()) || ""}
+            </TableCell>
             <TableCell className="text-right">{donation.totalAmount}</TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-export default SponsorList
+export default SponsorList;
