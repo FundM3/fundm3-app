@@ -40,6 +40,7 @@ export interface ProjectResponse {
     instagram: string;
     github: string;
     telegram: string;
+    twitter: string;
   };
   managers?: User[];
 }
@@ -68,6 +69,7 @@ interface UpdateProjectRequest {
   instagram?: string;
   github?: string;
   telegram?: string;
+  twitter?: string;
 }
 
 interface CreateProjectRequest {
@@ -81,6 +83,7 @@ interface CreateProjectRequest {
   instagram?: string;
   github?: string;
   telegram?: string;
+  twitter?: string;
 }
 
 export const getProjectDetail = async (

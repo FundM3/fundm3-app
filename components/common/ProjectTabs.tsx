@@ -1,15 +1,15 @@
-import React from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import React from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import Image from 'next/image'
-import SponsorList from './SponsorList'
-import { Separator } from '../ui/separator'
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Image from "next/image";
+import SponsorList from "./SponsorList";
+import { Separator } from "../ui/separator";
 
 interface Props {
   projectImageUrls: string[];
@@ -17,20 +17,27 @@ interface Props {
   projectId: number;
 }
 
-const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId }) => {
+const ProjectTabs: React.FC<Props> = ({
+  projectImageUrls,
+  description,
+  projectId,
+}) => {
   return (
     <>
-      <section className='bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full'>
+      <section className="bg-dotted-pattern bg-cover bg-center py-5 md:py-10 w-full">
         <Tabs defaultValue="1">
           <div className="flex items-center">
-              <TabsList>
-                  <TabsTrigger value="1">Description</TabsTrigger>
-                  <TabsTrigger value="2">Donor List</TabsTrigger>
-              </TabsList>
+            <TabsList>
+              <TabsTrigger value="1">Description</TabsTrigger>
+              <TabsTrigger value="2">Donor List</TabsTrigger>
+            </TabsList>
           </div>
           <Separator className="my-5" />
           <TabsContent value="1">
-            <Card x-chunk="dashboard-05-chunk-1" className='border-none shadow-none'>
+            <Card
+              x-chunk="dashboard-05-chunk-1"
+              className="border-none shadow-none"
+            >
               <CardContent>
                 <div className="flex flex-col items-center py-[30px]">
                   {projectImageUrls.length > 0 && (
@@ -52,22 +59,22 @@ const ProjectTabs: React.FC<Props> = ({ projectImageUrls, description, projectId
             </Card>
           </TabsContent>
           <TabsContent value="2">
-              <Card x-chunk="dashboard-05-chunk-3">
-                  <CardHeader className="px-7">
-                    <CardTitle>Donor List</CardTitle>
-                    <CardDescription>
-                        Recent donation from your donors.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <SponsorList projectId={projectId} />
-                  </CardContent>
-              </Card>
+            <Card x-chunk="dashboard-05-chunk-3">
+              <CardHeader className="px-7">
+                <CardTitle>Donor List</CardTitle>
+                <CardDescription>
+                  Recent donation from your donors.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <SponsorList projectId={projectId} />
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default ProjectTabs
+export default ProjectTabs;
