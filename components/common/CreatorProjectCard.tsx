@@ -14,7 +14,7 @@ const CreatorProjectCard = ({ profile }: any) => {
             className="rounded-t-2xl"
           />
         </div>
-        <div className="py-4 px-4 flex flex-col gap-3">
+        <div className="py-8 px-4 flex flex-col gap-3">
           <h2 className="text-black text-xs line-clamp-1 w-full">
             {profile.projectName}
           </h2>

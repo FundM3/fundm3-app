@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
+import Footers from "@/components/common/Footers";
 export default function RootLayout({
     children,
 }: Readonly<{
