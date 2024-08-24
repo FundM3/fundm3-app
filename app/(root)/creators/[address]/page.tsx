@@ -55,19 +55,20 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
 
   return (
     <>
-      <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-        <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
-          <div className="md:w-1/3 flex justify-center items-center p-5">
+      <section className="wrapper bg-dotted-pattern bg-cover bg-center md:py-10">
+        <div className="md:h-[370px] mx-auto bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+          <div className=" flex justify-center items-center md:pl-[52px] md:pr-[62px]">
             <div
-              className="w-48 h-48 md:w-48 md:h-48 relative rounded-full overflow-hidden"
-              style={{ border: "2px solid #cccccc" }}
+              className="w-[330px] h-[330px] relative rounded-full overflow-hidden"
+              //   style={{ border: "2px solid #cccccc" }}
             >
               {profile.warpcastPicture ? (
                 <Image
                   src={profile.warpcastPicture}
                   alt="Profile Picture"
                   layout="fill"
-                  objectFit="cover"
+                  className="rounded-full z-50 object-cover"
+                  style={{ clipPath: "circle()" }}
                 />
               ) : (
                 <svg
@@ -80,44 +81,95 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
               )}
             </div>
           </div>
-          <div className="md:w-2/3 p-5">
-            <h1 className="text-2xl font-bold mb-2">{profile.name}</h1>
-            {profile.fid && (
-              <div className="flex flex-row items-center gap-2 mb-4">
-                <div className="flex items-center justify-center w-6 h-6">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 1000 1000"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect width="1000" height="1000" rx="200" fill="#855DCD" />
-                    <path
-                      d="M257.778 155.556H742.222V844.444H671.111V528.889H670.414C662.554 441.677 589.258 373.333 500 373.333C410.742 373.333 337.446 441.677 329.586 528.889H328.889V844.444H257.778V155.556Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M128.889 253.333L157.778 351.111H182.222V746.667C169.949 746.667 160 756.616 160 768.889V795.556H155.556C143.283 795.556 133.333 805.505 133.333 817.778V844.444H382.222V817.778C382.222 805.505 372.273 795.556 360 795.556H355.556V768.889C355.556 756.616 345.606 746.667 333.333 746.667H306.667V253.333H128.889Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M675.556 746.667C663.283 746.667 653.333 756.616 653.333 768.889V795.556H648.889C636.616 795.556 626.667 805.505 626.667 817.778V844.444H875.556V817.778C875.556 805.505 865.606 795.556 853.333 795.556H848.889V768.889C848.889 756.616 838.94 746.667 826.667 746.667V351.111H851.111L880 253.333H702.222V746.667H675.556Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
-                <p className="text-gray-700 text-base m-0">{profile.fid}</p>
+          <div className="pt-[39px] pb-[39px] pr-[56px] max-md:pl-[56px]">
+            <div className="h-[30px] w-[124px] bg-white rounded-md overflow-hidden">
+              <div className="h-[26px] w-[124px] bg-yellow rounded-md overflow-hidden">
+                {
+                  <p className="text-center font-medium text-[12px] py-[4px]">
+                    Web developer
+                  </p>
+                }
               </div>
-            )}
-            <div className="flex gap-4 sticky">
+            </div>
+            <div className="h-[50px] flex items-center">
+              <h1
+                className="font-semibold line-clamp-1"
+                style={{ fontSize: "min(max(24px, 2vw), 40px)" }}
+              >
+                {profile.name}
+              </h1>
+            </div>
+            <div className="h-[40px] md:w-full bg-white overflow-hidden pt-[4px] pb-[10px]">
+              {
+                <p className="text-left font-light text-[16px] text-gray_text leading-tight">
+                  xx Followers | xxx Sponsors | xxx Projects
+                </p>
+              }
+            </div>
+            <div className="h-[83px] w-auto overflow-hidden ">
+              {
+                <p className="text-left font-light text-[16px] break-all line-clamp-4 leading-tight py-[1px]">
+                  test !!!! Since the success of a time-domain speech
+                  separation, further improvements have been made by expanding
+                  the length and channel of a feature sequence to increase the
+                  amount of computation. When temporally expanded to a long
+                  sequence, the feature is segmented into chunks as a dual-path
+                  model in most studies of speech separation. In particular, it
+                  is common for the process of separating features corresponding
+                  to each speaker to be located in the final stage of the
+                  network. However, it is more advantageous and intuitive to
+                  proactively expand the feature sequence to include the number
+                  of speakers as an extra dimension. In this paper, we present
+                  an asymmetric strategy in which the encoder and decoder are
+                  partitioned to perform distinct processing in separation
+                  tasks. The encoder analyzes features, and the output of the
+                  encoder is split into the number of speakers to be separated.
+                  The separated sequences are then reconstructed by the
+                  weight-shared decoder, as Siamese network, in addition to
+                  cross-speaker processing. By using the Siamese network in the
+                  decoder, without using speaker information, the network
+                  directly learns to discriminate the features using a
+                  separation objective. With a common split layer, intermediate
+                  encoder features for skip connections are also split for the
+                  reconstruction decoder based on the U-Net structure. In
+                  addition, instead of segmenting the feature into chunks as
+                  dual-path, we design global and local Transformer blocks to
+                  directly process long sequences. The experimental results
+                  demonstrated that this separation-and-reconstruction framework
+                  is effective and that the combination of proposed global and
+                  local Transformer can sufficiently replace the role of inter-
+                  and intra-chunk processing in dual-path structure. Finally,
+                  the presented model including both of these achieved
+                  state-of-the-art performance with less computation than before
+                  in various benchmark datasets.
+                </p>
+              }
+            </div>
+            <div className="flex gap-4 sticky pt-[20px]">
               <DonateButton receipientAddress={address} />
+              {profile.twitter != null && (
+                <Link
+                  href={`${EXTERNAL_URLS.TWITTER}${profile.twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-w-10 min-h-10 bg-black text-white rounded-full inline-flex items-center justify-center"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path d="M18 18.974C16.2421 18.974 14.6366 18.9938 13.0322 18.9529C12.7901 18.9466 12.4785 18.7126 12.3274 18.491C10.9096 16.4123 9.52034 14.3132 8.12184 12.2206C8.01427 12.0597 7.90052 11.9032 7.73742 11.6701C6.68556 12.9247 5.66108 14.1448 4.63929 15.3673C3.90438 16.2466 3.11625 17.087 2.45691 18.0232C1.86042 18.8699 1.16059 19.1936 0.103335 18.8858C2.40987 16.1176 4.70677 13.3616 7.02757 10.5767C4.7006 7.08324 2.39291 3.61717 0 0.0236204C1.8076 0.0236204 3.45286 0.00455645 5.09659 0.0470532C5.30981 0.0526135 5.56777 0.338175 5.71621 0.557411C7.15211 2.68185 8.56912 4.82019 10.0201 6.99745C11.7019 4.98144 13.3862 3.02421 14.9948 1.00303C15.6167 0.221806 16.2526 -0.245658 17.3507 0.134827C15.161 2.76367 12.9736 5.38893 10.7395 8.07059C13.1359 11.6689 15.525 15.2573 18 18.9736V18.974ZM15.7166 17.794C15.6487 17.6181 15.6345 17.5446 15.5967 17.489C12.0212 12.2122 8.44612 6.93589 4.85984 1.66709C4.75111 1.50743 4.5348 1.33943 4.36013 1.3291C3.70079 1.28939 3.03759 1.31322 2.33584 1.31322C2.3744 1.45898 2.37594 1.53603 2.41141 1.58885C5.99923 6.88704 9.58743 12.1848 13.1907 17.4719C13.304 17.6379 13.5705 17.767 13.7737 17.7801C14.3917 17.8198 15.0141 17.7944 15.7166 17.7944V17.794Z" />
+                  </svg>
+                </Link>
+              )}
               {profile.github != null && (
                 <Link
                   href={`${EXTERNAL_URLS.GITHUB}${profile.github}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-black text-white px-4 py-2 rounded-full inline-flex items-center"
+                  className="min-w-10 min-h-10 bg-black text-white rounded-full inline-flex items-center justify-center"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +182,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
                 </Link>
               )}
 
-              {profile.fid != null && (
+              {/* {profile.fid != null && (
                 <Link
                   href={`${EXTERNAL_URLS.FID}${profile.fid}`}
                   target="_blank"
@@ -162,7 +214,7 @@ const CreatorDetail = ({ params }: { params: { address: string } }) => {
                     />
                   </svg>
                 </Link>
-              )}
+              )} */}
 
               {/* { profile.github != null ?
                 <Button className="bg-black text-white px-4 py-2 rounded-full">

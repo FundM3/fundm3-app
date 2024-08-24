@@ -18,6 +18,7 @@ export interface ProfileData {
   instagram: string;
   github: string;
   telegram: string;
+  twitter: string | null;
   warpcastPicture: string;
 }
 
@@ -35,6 +36,7 @@ export interface UserProfileResponse {
   instagram: string | null;
   github: string | null;
   telegram: string | null;
+  twitter: string | null;
   profilePicture: string | null;
   warpcastPicture: string | null;
   createdAt: string;
@@ -56,6 +58,7 @@ interface UpdateProfileRequest {
   instagram?: string | null;
   github?: string | null;
   telegram?: string | null;
+  twitter?: string | null;
 }
 
 export const getProfileDetail = async (
@@ -95,6 +98,6 @@ export const updateProfile = async (
     data: profileData,
     isPrivate: true,
   });
-  
+
   return response.data!;
 };
