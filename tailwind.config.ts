@@ -17,6 +17,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    // screens: {
+    //   //   xs: { max: "100px" },
+    // },
     extend: {
       colors: {
         yellow: "#FFD43E",

@@ -54,6 +54,7 @@ interface UpdateProfileRequest {
   address: string;
   fid?: number | null;
   name?: string | null;
+  headshot?: string | null;
   email?: string | null;
   instagram?: string | null;
   github?: string | null;

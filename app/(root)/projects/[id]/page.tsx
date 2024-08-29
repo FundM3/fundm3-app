@@ -74,69 +74,75 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <section className="wrapper bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
-        <div className="flex flex-row -space-x-40 relative max-w-7xl h-72  overflow-visible">
-          <Image
-            src={project.details.logoUrl}
-            alt={project.name}
-            // layout="responsive"
-            height={300}
-            width={300}
-            // objectFit="cover"
-            className="rounded-full z-50 object-cover"
-            style={{ clipPath: "circle()" }}
-          />
-
-          <div
-            className="w-full mx-auto bg-white rounded-2xl overflow-hidden shadow-md shadow-gray-200
-          flex flex-col md:flex-row ml-28 pl-40"
-          >
-            <div className="md:w-full p-10 ">
-              <h1 className="text-2xl font-bold">{project.name}</h1>
-              <div className="w-full h-6 overflow-hidden mt-2 mb-2">
-                <p className="text-gray-400 text-justify truncate">
-                  {"Created by "}
-                  <span className="font-black">{project.owner.name}</span>
-                  {"  |  " +
-                    "Latest Update " +
-                    new Date(project.updatedAt).getDate() +
-                    " " +
-                    new Date(project.updatedAt).toLocaleString("en-US", {
-                      month: "short",
-                    }) +
-                    " " +
-                    new Date(project.updatedAt).getFullYear() +
-                    "  |  " +
-                    (sponsorCount !== null ? sponsorCount : "0") +
-                    " Sponsors"}
-                </p>
-              </div>
-              <div className="w-full h-2/5 overflow-hidden mb-1">
-                <p className="text-gray-700 text-justify line-clamp-3">
-                  {project.description || "No Description"}
-                </p>
-              </div>
-              <div className="flex gap-4">
-                <DonateButton receipientAddress={project.address} />
-                {project.details.github != null && (
-                  <Link
-                    href={`${EXTERNAL_URLS.GITHUB}${project.details.github}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white px-4 py-2 rounded-full inline-flex items-center"
+      <section className="wrapper bg-dotted-pattern bg-cover bg-center">
+        <div className="pt-10 flex flex-row -space-x-[200px] justify-center relative overflow-visible">
+          <div className="min-w-[400px] min-h-[400px] flex items-center justify-center">
+            <Image
+              src={project.details.logoUrl}
+              alt={project.name}
+              // layout="responsive"
+              height={400}
+              width={400}
+              // objectFit="cover"
+              className="w-[400px] h-[400px] rounded-full z-50 object-cover"
+              style={{ clipPath: "circle()" }}
+            />
+          </div>
+          <div className="min-h-[400px] py-[15px] w-full">
+            <div className="w-auto max-h-[370px] py-10 pl-[200px] bg-white rounded-2xl overflow-hidden shadow-md shadow-gray-200">
+              <div className="w-auto p-10">
+                <h1 className="font-semibold" style={{ fontSize: "40px" }}>
+                  {project.name}
+                </h1>
+                <div className="w-full h-6 overflow-hidden mt-2 mb-2">
+                  <p
+                    className="text-gray_text text-justify truncate font-normal"
+                    style={{ fontSize: "16px" }}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
+                    {"Created by "}
+                    <span className="underline underline-offset-[3px] decoration-gray_text">
+                      {project.owner.name}
+                    </span>
+                    {"  |  " +
+                      "Latest Update " +
+                      new Date(project.updatedAt).getDate() +
+                      " " +
+                      new Date(project.updatedAt).toLocaleString("en-US", {
+                        month: "short",
+                      }) +
+                      " " +
+                      new Date(project.updatedAt).getFullYear() +
+                      "  |  " +
+                      (sponsorCount !== null ? sponsorCount : "0") +
+                      " Sponsors"}
+                  </p>
+                </div>
+                <div className="w-full h-[70px] overflow-hidden mb-1">
+                  <p className="text-gray-700 text-justify line-clamp-3">
+                    {project.description || "No Description"}
+                  </p>
+                </div>
+                <div className="flex gap-4 pt-[10px]">
+                  <DonateButton receipientAddress={project.address} />
+                  {project.details.github != null && (
+                    <Link
+                      href={`${EXTERNAL_URLS.GITHUB}${project.details.github}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black text-white px-4 py-2 rounded-full inline-flex items-center"
                     >
-                      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                    </svg>
-                  </Link>
-                )}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                      </svg>
+                    </Link>
+                  )}
 
-                {/* {project.details.telegram != null && ( // ~~~~~~~~~~~~~~TELEGRAM button~~~~~~~~~~~~
+                  {/* {project.details.telegram != null && ( // ~~~~~~~~~~~~~~TELEGRAM button~~~~~~~~~~~~
                   <Link
                     href={`${EXTERNAL_URLS.TELEGRAM}${project.details.telegram}`}
                     target="_blank"
@@ -154,7 +160,7 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
                   </Link>
                 )} */}
 
-                {/* {project.details.instagram != null && ( // ~~~~~~~~~~~~~~INSTAGRAM button~~~~~~~~~~~~
+                  {/* {project.details.instagram != null && ( // ~~~~~~~~~~~~~~INSTAGRAM button~~~~~~~~~~~~
                   <Link
                     href={`${EXTERNAL_URLS.INSTAGRAM}${project.details.instagram}`}
                     target="_blank"
@@ -172,25 +178,25 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
                   </Link>
                 )} */}
 
-                {project.details.twitter != null && ( //  ~~~~~~~~~~~~~~INSTAGRAM button~~~~~~~~~~~
-                  <Link
-                    href={`${EXTERNAL_URLS.TWITTER}${project.details.twitter}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white px-4 py-2 rounded-full inline-flex items-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                  {project.details.twitter != null && ( //  ~~~~~~~~~~~~~~INSTAGRAM button~~~~~~~~~~~
+                    <Link
+                      href={`${EXTERNAL_URLS.TWITTER}${project.details.twitter}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black text-white px-4 py-2 rounded-full inline-flex items-center"
                     >
-                      <path d="M18 18.974C16.2421 18.974 14.6366 18.9938 13.0322 18.9529C12.7901 18.9466 12.4785 18.7126 12.3274 18.491C10.9096 16.4123 9.52034 14.3132 8.12184 12.2206C8.01427 12.0597 7.90052 11.9032 7.73742 11.6701C6.68556 12.9247 5.66108 14.1448 4.63929 15.3673C3.90438 16.2466 3.11625 17.087 2.45691 18.0232C1.86042 18.8699 1.16059 19.1936 0.103335 18.8858C2.40987 16.1176 4.70677 13.3616 7.02757 10.5767C4.7006 7.08324 2.39291 3.61717 0 0.0236204C1.8076 0.0236204 3.45286 0.00455645 5.09659 0.0470532C5.30981 0.0526135 5.56777 0.338175 5.71621 0.557411C7.15211 2.68185 8.56912 4.82019 10.0201 6.99745C11.7019 4.98144 13.3862 3.02421 14.9948 1.00303C15.6167 0.221806 16.2526 -0.245658 17.3507 0.134827C15.161 2.76367 12.9736 5.38893 10.7395 8.07059C13.1359 11.6689 15.525 15.2573 18 18.9736V18.974ZM15.7166 17.794C15.6487 17.6181 15.6345 17.5446 15.5967 17.489C12.0212 12.2122 8.44612 6.93589 4.85984 1.66709C4.75111 1.50743 4.5348 1.33943 4.36013 1.3291C3.70079 1.28939 3.03759 1.31322 2.33584 1.31322C2.3744 1.45898 2.37594 1.53603 2.41141 1.58885C5.99923 6.88704 9.58743 12.1848 13.1907 17.4719C13.304 17.6379 13.5705 17.767 13.7737 17.7801C14.3917 17.8198 15.0141 17.7944 15.7166 17.7944V17.794Z" />
-                    </svg>
-                  </Link>
-                )}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M18 18.974C16.2421 18.974 14.6366 18.9938 13.0322 18.9529C12.7901 18.9466 12.4785 18.7126 12.3274 18.491C10.9096 16.4123 9.52034 14.3132 8.12184 12.2206C8.01427 12.0597 7.90052 11.9032 7.73742 11.6701C6.68556 12.9247 5.66108 14.1448 4.63929 15.3673C3.90438 16.2466 3.11625 17.087 2.45691 18.0232C1.86042 18.8699 1.16059 19.1936 0.103335 18.8858C2.40987 16.1176 4.70677 13.3616 7.02757 10.5767C4.7006 7.08324 2.39291 3.61717 0 0.0236204C1.8076 0.0236204 3.45286 0.00455645 5.09659 0.0470532C5.30981 0.0526135 5.56777 0.338175 5.71621 0.557411C7.15211 2.68185 8.56912 4.82019 10.0201 6.99745C11.7019 4.98144 13.3862 3.02421 14.9948 1.00303C15.6167 0.221806 16.2526 -0.245658 17.3507 0.134827C15.161 2.76367 12.9736 5.38893 10.7395 8.07059C13.1359 11.6689 15.525 15.2573 18 18.9736V18.974ZM15.7166 17.794C15.6487 17.6181 15.6345 17.5446 15.5967 17.489C12.0212 12.2122 8.44612 6.93589 4.85984 1.66709C4.75111 1.50743 4.5348 1.33943 4.36013 1.3291C3.70079 1.28939 3.03759 1.31322 2.33584 1.31322C2.3744 1.45898 2.37594 1.53603 2.41141 1.58885C5.99923 6.88704 9.58743 12.1848 13.1907 17.4719C13.304 17.6379 13.5705 17.767 13.7737 17.7801C14.3917 17.8198 15.0141 17.7944 15.7166 17.7944V17.794Z" />
+                      </svg>
+                    </Link>
+                  )}
 
-                {/* {project.fid != null && (
+                  {/* {project.fid != null && (
                   <Link
                     href={`${EXTERNAL_URLS.FID}${project.fid}`}
                     target="_blank"
@@ -224,28 +230,29 @@ const ProjectDetail = ({ params }: { params: { id: string } }) => {
                   </Link>
                 )} */}
 
-                {/* <Link  //  ~~~~~~~~~~~~~~warpcast button~~~~~~~~~~~
-                  href={`${EXTERNAL_URLS.CAST}text=Donate ${project.name}&embeds[]=${EXTERNAL_URLS.FRAME}/${project.id}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center bg-black text-white px-4 py-2 rounded-full"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <Link //  ~~~~~~~~~~~~~~warpcast button~~~~~~~~~~~
+                    href={`${EXTERNAL_URLS.CAST}text=Donate ${project.name}&embeds[]=${EXTERNAL_URLS.FRAME}/${project.id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center bg-black text-white px-4 py-2 rounded-2xl"
                   >
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                    <polyline points="16 6 12 2 8 6" />
-                    <line x1="12" y1="2" x2="12" y2="15" />
-                  </svg>
-                  Warpcast
-                </Link> */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                      <polyline points="16 6 12 2 8 6" />
+                      <line x1="12" y1="2" x2="12" y2="15" />
+                    </svg>
+                    Warpcast
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

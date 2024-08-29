@@ -117,7 +117,7 @@ export default function DonateButton({ receipientAddress }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild onClick={handleReset}>
-        <Button className="bg-black text-white px-4 py-2 rounded-full">
+        <Button className="bg-black text-white px-4 py-2 rounded-2xl">
           Sponsor Me
         </Button>
       </DialogTrigger>
