@@ -21,6 +21,7 @@ import Modal from "react-modal";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useAccount } from "wagmi";
 import { createProject } from "@/lib/api/projectApi";
+import ImageCropper from "@/components/common/PathImageCropper";
 
 const CreateProjectForm = () => {
   const { isAuth, isAuthLoading } = useAuth();
@@ -64,20 +65,28 @@ const CreateProjectForm = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Handle image upload
-  const handleLogoImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (event.target.files && event.target.files[0]) {
-      setLogoImage(event.target.files[0]);
-    }
+  //   const handleLogoImageChange = (
+  //     event: React.ChangeEvent<HTMLInputElement>
+  //   ) => {
+  //     if (event.target.files && event.target.files[0]) {
+  //       setLogoImage(event.target.files[0]);
+  //     }
+  //   };
+
+  const handleLogoImageChange = (image: File) => {
+    setLogoImage(image);
   };
 
-  const handleProjectImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (event.target.files && event.target.files[0]) {
-      setProjectImage(event.target.files[0]);
-    }
+  // const handleProjectImageChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>
+  // ) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     setProjectImage(event.target.files[0]);
+  //   }
+  // };
+
+  const handleProjectImageChange = (image: File) => {
+    setProjectImage(image);
   };
 
   // Handle image removal
@@ -187,7 +196,7 @@ const CreateProjectForm = () => {
                 </div>
               ) : (
                 <>
-                  <input
+                  {/* <input
                     type="file"
                     accept="image/*"
                     onChange={handleLogoImageChange}
@@ -199,7 +208,12 @@ const CreateProjectForm = () => {
                     className="text-gray-400 cursor-pointer text-center"
                   >
                     Upload & Browse
-                  </label>
+                  </label> */}
+                  <ImageCropper
+                    onCropComplete={handleLogoImageChange}
+                    aspectRatio={1 / 1}
+                    id={"logoImage"}
+                  />
                 </>
               )}
             </div>
@@ -226,21 +240,11 @@ const CreateProjectForm = () => {
                   </button>
                 </div>
               ) : (
-                <>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleProjectImageChange}
-                    className="hidden"
-                    id="projectImage"
-                  />
-                  <label
-                    htmlFor="projectImage"
-                    className="text-gray-400 cursor-pointer text-center"
-                  >
-                    Upload & Browse
-                  </label>
-                </>
+                <ImageCropper
+                  onCropComplete={handleProjectImageChange}
+                  aspectRatio={3 / 1}
+                  id={"projectImage"}
+                />
               )}
             </div>
           </div>

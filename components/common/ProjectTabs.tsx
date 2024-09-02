@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import SponsorList from "./SponsorList";
 import { Separator } from "../ui/separator";
+import { Fullscreen } from "lucide-react";
 
 interface Props {
   projectImageUrls: string[];
@@ -41,12 +42,14 @@ const ProjectTabs: React.FC<Props> = ({
               <CardContent>
                 <div className="flex flex-col items-center py-[30px]">
                   {projectImageUrls.length > 0 && (
-                    <div className="w-full h-80 relative mb-5">
+                    <div className="w-full h-30 relative mb-5">
                       <Image
                         src={projectImageUrls[0]}
                         alt="Project Image"
-                        layout="fill"
+                        // layout="fill"
                         objectFit="cover"
+                        width={1920} // 固定寬度
+                        height={600} // 固定高度
                         className="rounded-lg"
                       />
                     </div>
