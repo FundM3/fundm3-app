@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import Search from "@/components/common/Search";
 import Filter from "@/components/common/Filter";
 import SearchButton from "@/components/common/SearchButton";
@@ -28,22 +28,25 @@ export default function Home() {
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">Empower Dreams, Fuel Change</h1>
-            <p className="p-regular-20 md:p-regular-24">Join a community of change makers on FundM3. Together, we can build a brighter future for all</p>
+            <p className="p-regular-20 md:p-regular-24">
+              Join a community of change makers on FundM3. Together, we can
+              build a brighter future for all
+            </p>
             <div>
               <Button size="lg" className="button w-full sm:w-fit">
-                <Link href="/projects">
-                  Explore Projects
-                </Link>
+                <Link href="/projects">Explore Projects</Link>
               </Button>
-              <Button size="lg" asChild className="button w-full lg:ml-4 sm:w-fit mt-4">
-                <Link href="/creators">
-                  Explore Creators
-                </Link>
+              <Button
+                size="lg"
+                asChild
+                className="button w-full lg:ml-4 sm:w-fit mt-4"
+              >
+                <Link href="/creators">Explore Creators</Link>
               </Button>
             </div>
           </div>
 
-          <Image 
+          <Image
             src="/assets/images/hero.png"
             alt="hero"
             width={1000}
@@ -51,7 +54,7 @@ export default function Home() {
             className="max-h-[70vh] object-contain object-center 2xl:max-h-[50vh]"
           />
         </div>
-      </section> 
+      </section>
 
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <div className="flex w-full flex-col gap-5 md:flex-row">

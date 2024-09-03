@@ -80,6 +80,10 @@ const ProfileDetails = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [profilePicture, setProfilePicture] = useState<string | null>(null);
 
+  const [HeadShotImage, setHeadShotImage] = useState<File | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<string | null>(null);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -94,6 +98,24 @@ const ProfileDetails = () => {
     },
   });
 
+  const handleHeadshotImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files && event.target.files[0]) {
+      setHeadShotImage(event.target.files[0]);
+    }
+  };
+
+  // Handle image removal
+  const removeHeadShotImage = () => {
+    setHeadShotImage(null);
+  };
+
+  const openModalWithImage = (image: string) => {
+    setModalImage(image);
+    setIsModalOpen(true);
+  };
+
   useEffect(() => {
     const fetchProfile = async () => {
       if (isAuth && address) {
@@ -101,7 +123,11 @@ const ProfileDetails = () => {
           const data = await getProfileDetail(address);
           setProfileData(data);
           form.reset(data);
-          setProfilePicture(data.warpcastPicture ?? null);
+          if (data.profilePicture) {
+            setProfilePicture(data.profilePicture);
+          } else {
+            setProfilePicture(data.warpcastPicture);
+          }
         } catch (error) {
           console.error("Failed to fetch profile data:", error);
         }
@@ -111,7 +137,7 @@ const ProfileDetails = () => {
     fetchProfile();
   }, [isAuth, address, form]);
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const { fid, ...updateValues } = values;
       const updatedProfile = await updateProfile(updateValues);
@@ -138,20 +164,56 @@ const ProfileDetails = () => {
 
   return (
     <div className="flex flex-col md:flex-row gap-8">
-      <div className="w-full md:w-1/5 flex justify-center md:justify-start">
+      <div className="min-w-[192px] max-w-[192px] max-h-[192px] flex justify-center md:justify-start">
         <div
-          className="w-48 h-48 md:w-48 md:h-48 relative rounded-full overflow-hidden"
+          className="min-w-[192px] min-h-[192px] relative rounded-full overflow-hidden"
           style={{ border: "2px solid #cccccc" }}
         >
-          {profilePicture ? (
-            <Image
-              src={profilePicture}
-              alt="Profile Picture"
-              layout="fill"
-              objectFit="cover"
-            />
+          {HeadShotImage ? (
+            <div className="relative h-full w-full ">
+              <Image
+                src={URL.createObjectURL(HeadShotImage)}
+                alt="Profile Picture"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-full z-10 object-cover"
+                style={{ clipPath: "circle()" }}
+                onClick={() =>
+                  openModalWithImage(URL.createObjectURL(HeadShotImage))
+                }
+              />
+              <button
+                type="button"
+                onClick={removeHeadShotImage}
+                className="z-20 absolute top-8 right-8 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
+              >
+                X
+              </button>
+            </div>
           ) : (
-            <DefaultUserIcon />
+            <>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleHeadshotImageChange}
+                className="hidden"
+                id="profileImage"
+              />
+              <label htmlFor="profileImage" className="cursor-pointer">
+                {profilePicture ? (
+                  <Image
+                    src={profilePicture}
+                    alt="Profile Picture"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                ) : (
+                  <div className="text-gray-400 text-center">
+                    <DefaultUserIcon />
+                  </div>
+                )}
+              </label>
+            </>
           )}
         </div>
       </div>
@@ -195,9 +257,12 @@ const ProfileDetails = () => {
                     </FormLabel>
                     <div className="flex items-center gap-2">
                       <FormControl className="flex-grow">
-                        {["instagram", "github", "telegram","twitter"].includes(
-                          fieldName
-                        ) ? (
+                        {[
+                          "instagram",
+                          "github",
+                          "telegram",
+                          "twitter",
+                        ].includes(fieldName) ? (
                           <div className="flex items-center">
                             <span className="text-gray-500 mr-2">@</span>
                             <Input
@@ -232,9 +297,13 @@ const ProfileDetails = () => {
                       </FormControl>
                       {!isEditMode &&
                         field.value &&
-                        ["fid", "instagram", "github", "telegram","twitter"].includes(
-                          fieldName
-                        ) && (
+                        [
+                          "fid",
+                          "instagram",
+                          "github",
+                          "telegram",
+                          "twitter",
+                        ].includes(fieldName) && (
                           <Link
                             href={`${EXTERNAL_URLS[fieldName.toUpperCase()]}${
                               field.value
