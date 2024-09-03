@@ -22,11 +22,21 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { useAccount } from "wagmi";
 import { createProject } from "@/lib/api/projectApi";
 import ImageCropper from "@/components/common/PathImageCropper";
+import PreviewMarkdown from "@/components/common/PreviewMarkdown";
 
 const CreateProjectForm = () => {
   const { isAuth, isAuthLoading } = useAuth();
   const { address } = useAccount();
   const router = useRouter();
+
+  const [inputText, setInputText] = useState<string>(""); // 用於 Textarea 中的輸入
+  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false); // 控制模態視窗的開關
+  const [markdownText, setMarkdownText] = useState<string>(""); // 傳遞給模態視窗的 Markdown 內容
+
+  const handlePreview = () => {
+    setMarkdownText(inputText);
+    setIsPreviewOpen(true);
+  };
 
   // Form Schema for shadcn-ui form
   const formSchema = z.object({
@@ -125,14 +135,12 @@ const CreateProjectForm = () => {
 
     const formData = new FormData();
     formData.append("ownerAddress", address || "");
-
     Object.entries(values).forEach(([key, value]) => {
       if (value) formData.append(key, value);
     });
-
+    console.log(values);
     formData.append("logo", logoImage);
     formData.append("projectImage", projectImage);
-
     try {
       const response = await createProject(formData);
       if (response.success) {
@@ -395,6 +403,11 @@ const CreateProjectForm = () => {
                       placeholder="Description"
                       {...field}
                       className="textarea rounded-2xl h-[95%]"
+                      onChange={(e) => {
+                        field.onChange(e); // 更新 React Hook Form 狀態
+                        setInputText(e.target.value); // 同步更新 inputText 狀態
+                      }}
+                      value={field.value} // 由 React Hook Form 控制輸入值
                     />
                   </FormControl>
                   <FormMessage />
@@ -402,6 +415,18 @@ const CreateProjectForm = () => {
               )}
             />
           </div>
+          <button
+            type="button"
+            onClick={handlePreview}
+            className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Preview
+          </button>
+          <PreviewMarkdown
+            isOpen={isPreviewOpen}
+            onClose={() => setIsPreviewOpen(false)}
+            markdownText={markdownText}
+          />
         </div>
 
         <Button
