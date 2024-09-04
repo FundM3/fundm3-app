@@ -3,6 +3,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import MarkdownParser from "@/components/common/MarkdownParser";
 
 interface PreviewModalProps {
   isOpen: boolean;
@@ -31,37 +32,7 @@ const PreviewMarkdown: React.FC<PreviewModalProps> = ({
         >
           X
         </button>
-        <ReactMarkdown
-          children={markdownText}
-          remarkPlugins={[remarkGfm]}
-          rehypePlugins={[rehypeRaw]}
-          components={{
-            table: ({ node, ...props }) => (
-              <table
-                className="table-auto border-collapse border border-gray-300 w-full"
-                {...props}
-              />
-            ),
-            th: ({ node, ...props }) => (
-              <th
-                className="border border-gray-300 p-2 bg-gray-100"
-                {...props}
-              />
-            ),
-            td: ({ node, ...props }) => (
-              <td className="border border-gray-300 p-2" {...props} />
-            ),
-            pre: ({ node, ...props }) => (
-              <pre
-                className="bg-gray-800 text-white p-4 rounded overflow-x-auto"
-                {...props}
-              />
-            ),
-            code: ({ node, ...props }) => (
-              <code className="bg-gray-800 text-white p-1 rounded" {...props} />
-            ),
-          }}
-        />
+        <MarkdownParser markdownText={markdownText}></MarkdownParser>
       </div>
     </div>
   );

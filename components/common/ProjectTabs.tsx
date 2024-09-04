@@ -11,6 +11,7 @@ import Image from "next/image";
 import SponsorList from "./SponsorList";
 import { Separator } from "../ui/separator";
 import { Fullscreen } from "lucide-react";
+import MarkdownParser from "@/components/common/MarkdownParser";
 
 interface Props {
   projectImageUrls: string[];
@@ -48,15 +49,20 @@ const ProjectTabs: React.FC<Props> = ({
                         alt="Project Image"
                         // layout="fill"
                         objectFit="cover"
-                        width={1920} // 固定寬度
-                        height={600} // 固定高度
+                        width={1920}
+                        height={600}
                         className="rounded-lg"
                       />
                     </div>
                   )}
-                  <p className="text-gray-700 mb-4 text-justify">
-                    {description}
-                  </p>
+
+                  {/* <p className="text-gray-700 mb-4 text-justify">
+                  {description}
+                  </p> */}
+
+                  <div>
+                    <MarkdownParser markdownText={description}></MarkdownParser>
+                  </div>
                 </div>
               </CardContent>
             </Card>

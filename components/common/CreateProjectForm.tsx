@@ -404,10 +404,10 @@ const CreateProjectForm = () => {
                       {...field}
                       className="textarea rounded-2xl h-[95%]"
                       onChange={(e) => {
-                        field.onChange(e); // 更新 React Hook Form 狀態
-                        setInputText(e.target.value); // 同步更新 inputText 狀態
+                        field.onChange(e);
+                        setInputText(e.target.value);
                       }}
-                      value={field.value} // 由 React Hook Form 控制輸入值
+                      value={field.value}
                     />
                   </FormControl>
                   <FormMessage />
