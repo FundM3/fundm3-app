@@ -29,9 +29,9 @@ const CreateProjectForm = () => {
   const { address } = useAccount();
   const router = useRouter();
 
-  const [inputText, setInputText] = useState<string>(""); // 用於 Textarea 中的輸入
-  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false); // 控制模態視窗的開關
-  const [markdownText, setMarkdownText] = useState<string>(""); // 傳遞給模態視窗的 Markdown 內容
+  const [inputText, setInputText] = useState<string>("");
+  const [isPreviewOpen, setIsPreviewOpen] = useState<boolean>(false);
+  const [markdownText, setMarkdownText] = useState<string>("");
 
   const handlePreview = () => {
     setMarkdownText(inputText);

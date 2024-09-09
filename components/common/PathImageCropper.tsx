@@ -40,7 +40,6 @@ const ImageCropper: React.FC<ImageCropperProps> = ({
       img.onload = () => {
         let { width, height } = img;
 
-        // 根據最大和最小值限制調整圖片尺寸
         if (width > MAX_SIZE || height > MAX_SIZE) {
           const scale = Math.min(MAX_SIZE / width, MAX_SIZE / height);
           width *= scale;
