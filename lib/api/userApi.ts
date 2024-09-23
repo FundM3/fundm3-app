@@ -18,8 +18,10 @@ export interface ProfileData {
   instagram: string;
   github: string;
   telegram: string;
-  twitter: string | null;
+  twitter: string;
   warpcastPicture: string;
+  headshot: File;
+  hashtag: string;
 }
 
 interface ProfileListMeta {
@@ -37,6 +39,8 @@ export interface UserProfileResponse {
   github: string | null;
   telegram: string | null;
   twitter: string | null;
+  headshot: File | null;
+  hashtag: string | null;
   profilePicture: string | null;
   warpcastPicture: string | null;
   createdAt: string;
@@ -54,12 +58,13 @@ interface UpdateProfileRequest {
   address: string;
   fid?: number | null;
   name?: string | null;
-  headshot?: string | null;
   email?: string | null;
   instagram?: string | null;
   github?: string | null;
   telegram?: string | null;
   twitter?: string | null;
+  headshot?: File | null;
+  hashtag?: string | null;
 }
 
 export const getProfileDetail = async (
@@ -90,15 +95,31 @@ export const getProfileList = async (
   };
 };
 
+// export const updateProfile = async (
+//   profileData: UpdateProfileRequest
+// ): Promise<UserProfileResponse> => {
+//   const response = await apiCall<ApiResponse<UserProfileResponse>>({
+//     method: "post",
+//     url: "/user/profile/update",
+//     data: profileData,
+//     isPrivate: true,
+//   });
+
+//   return response.data!;
+// };
+
 export const updateProfile = async (
-  profileData: UpdateProfileRequest
+  formData: FormData
 ): Promise<UserProfileResponse> => {
   const response = await apiCall<ApiResponse<UserProfileResponse>>({
     method: "post",
     url: "/user/profile/update",
-    data: profileData,
+    data: formData,
     isPrivate: true,
+    isFormData: true,
   });
-
+  //   if (!response.data || !response.success) {
+  //     throw new Error("Invalid response from server");
+  //   }
   return response.data!;
 };

@@ -28,6 +28,7 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, "Username must be at least 2 characters.").nullable(),
   address: z.string(),
+  hashtag: z.string().nullable(),
   fid: z.number().int().positive().nullable(),
   email: z.string().email().nullable(),
   instagram: z.string().nullable(),
@@ -40,6 +41,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const fieldDisplayNames = {
   address: "Address",
+  hashtag: "Hashtag",
   name: "Name",
   email: "Email",
   fid: "FID",
@@ -51,6 +53,7 @@ const fieldDisplayNames = {
 
 const fieldPlaceholders = {
   address: "0x...",
+  hashtag: "Ex: Web developer",
   name: "Your full name",
   email: "your.email@example.com",
   fid: "Farcaster ID",
@@ -88,6 +91,7 @@ const ProfileDetails = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: null,
+      hashtag: null,
       address: "",
       fid: null,
       email: null,
@@ -139,8 +143,25 @@ const ProfileDetails = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const { fid, ...updateValues } = values;
-      const updatedProfile = await updateProfile(updateValues);
+      //   const { fid, ...updateValues } = values;
+
+      const formData = new FormData();
+
+      Object.entries(values).forEach(([key, value]) => {
+        if (value) {
+          if (typeof value === "string") {
+            formData.append(key, value);
+          } else if (typeof value === "number") {
+            formData.append(key, value.toString());
+          }
+        }
+      });
+
+      if (HeadShotImage instanceof File) {
+        formData.append("headshot", HeadShotImage);
+      }
+      const updatedProfile = await updateProfile(formData);
+
       setProfileData(updatedProfile);
       setErrorMessage(null);
       setIsEditMode(false);
@@ -178,17 +199,21 @@ const ProfileDetails = () => {
                 objectFit="cover"
                 className="rounded-full z-10 object-cover"
                 style={{ clipPath: "circle()" }}
-                onClick={() =>
-                  openModalWithImage(URL.createObjectURL(HeadShotImage))
-                }
+                onClick={() => {
+                  if (isEditMode) {
+                    openModalWithImage(URL.createObjectURL(HeadShotImage));
+                  }
+                }}
               />
-              <button
-                type="button"
-                onClick={removeHeadShotImage}
-                className="z-20 absolute top-8 right-8 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
-              >
-                X
-              </button>
+              {isEditMode ? (
+                <button
+                  type="button"
+                  onClick={removeHeadShotImage}
+                  className="z-20 absolute top-8 right-8 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                >
+                  X
+                </button>
+              ) : null}
             </div>
           ) : (
             <>
@@ -198,8 +223,12 @@ const ProfileDetails = () => {
                 onChange={handleHeadshotImageChange}
                 className="hidden"
                 id="profileImage"
+                disabled={!isEditMode}
               />
-              <label htmlFor="profileImage" className="cursor-pointer">
+              <label
+                htmlFor="profileImage"
+                className={isEditMode ? "cursor-pointer" : "cursor-default"}
+              >
                 {profilePicture ? (
                   <Image
                     src={profilePicture}
@@ -234,6 +263,7 @@ const ProfileDetails = () => {
           >
             {[
               "address",
+              "hashtag",
               "name",
               "email",
               "fid",
