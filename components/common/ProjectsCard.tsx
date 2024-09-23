@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import React from 'react'
-import Image from "next/image"
-import { ProjectData } from '@/lib/api/projectApi'
-import { formatDate } from '@/lib/utils/formatters'
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { ProjectData } from "@/lib/api/projectApi";
+import { formatDate } from "@/lib/utils/formatters";
 
 interface ProjectsCardProps {
   project: ProjectData;
 }
 
-const ProjectsCard = ({ project }: any) => {
+const ProjectsCard = ({ project }: ProjectsCardProps) => {
   return (
     <div className="max-w-sm rounded-2xl shadow-lg relative w-full overflow-hidden">
       <div className="relative w-full h-[200px] overflow-hidden">
         <Image
+          key={`${project.logoUrl}`}
           src={project.logoUrl}
           alt={project.logoUrl}
           layout="fill"
@@ -39,7 +40,7 @@ const ProjectsCard = ({ project }: any) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectsCard
+export default ProjectsCard;
